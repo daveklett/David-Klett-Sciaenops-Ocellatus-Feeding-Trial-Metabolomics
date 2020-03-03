@@ -1,0 +1,38 @@
+Load datasets
+```{r}
+individuals <- read.csv(file = "Individuals.csv", header = TRUE, sep = ",")
+diets <- read.csv(file = "Diets.csv", header = TRUE, sep = ",")
+dryfishweights <- read.csv(file = "Fish Weights.csv", header = TRUE, sep = ",")
+
+```
+
+
+Modelling
+Models for: Individual treatments and across treatments
+
+TL vs weight
+Liver weight vs TL
+All factors of Individuals (TL, Wt, Liver Weight, Eviscerated weight, condition factor, weight difference, % viscera, HSI)
+
+```{r}
+
+```
+
+
+Anova's
+Anova's for: Across treatments
+
+All factors for diets (Growth Rate, SGR, Average weight, Average TL, FCR, Liver weight, Eviscerated weight, condition factor, weight diff, % viscera, HSI)
+All factors for Fish weights (% H20, Dry Matter, Body Weight)
+Justin sampling average weight and individual weights from my sampling for whole fish and muscle for each diet
+
+```{r}
+
+```
+
+
+T tests
+T tests for: Justin sampling average weight and individual weights from my sampling for whole fish and muscle for each diet
+```{r}
+
+```
