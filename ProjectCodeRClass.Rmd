@@ -27,7 +27,18 @@ All factors for Fish weights (% H20, Dry Matter, Body Weight)
 Justin sampling average weight and individual weights from my sampling for whole fish and muscle for each diet
 
 ```{r}
-anovaGrowthRate <- anova()
+library(car)
+
+anovagrowthrate <- Anova(diets$growthrategpday ~ diets$diet)
+anovasgr <- Anova(diets$sgr ~ diets$diet)
+anovaavewt <- Anova(diets$avewt ~ diets$diet)
+anovafcr <- Anova(diets$fcr ~ diets$diet)
+anovaliverwt <- Anova(diets$liverwt ~ diets$diet)
+anovaevisceratedwt <- Anova(diets$evisceratedwt ~ diets$diet)
+anovacf <- Anova(diets$cfgperday ~ diets$diet)
+anovawtdiff <- Anova(diets$wtdiffgrams ~ diets$diet)
+anovapercentviscera <- Anova(diets$percentviscera ~ diets$diet)
+anovahis <- Anova(diets$his ~ diets$diet)
 ```
 
 
