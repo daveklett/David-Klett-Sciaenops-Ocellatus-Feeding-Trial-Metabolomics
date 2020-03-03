@@ -15,7 +15,7 @@ Liver weight vs TL
 All factors of Individuals (TL, Wt, Liver Weight, Eviscerated weight, condition factor, weight difference, % viscera, HSI)
 
 ```{r}
-delete
+
 ```
 
 
