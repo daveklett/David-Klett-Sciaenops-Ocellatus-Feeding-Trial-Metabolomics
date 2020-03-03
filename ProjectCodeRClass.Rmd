@@ -1,8 +1,8 @@
 Load datasets
 ```{r}
-individuals <- read.csv(file = "Individuals.csv", header = TRUE, sep = ",")
-diets <- read.csv(file = "Diets.csv", header = TRUE, sep = ",")
-dryfishweights <- read.csv(file = "Fish Weights.csv", header = TRUE, sep = ",")
+individuals <- read.csv(file = "individuals_data.csv", header = TRUE, sep = ",")
+diets <- read.csv(file = "diets_data.csv", header = TRUE, sep = ",")
+dryfishweights <- read.csv(file = "dryfishweights_data.csv", header = TRUE, sep = ",")
 
 ```
 
@@ -27,7 +27,7 @@ All factors for Fish weights (% H20, Dry Matter, Body Weight)
 Justin sampling average weight and individual weights from my sampling for whole fish and muscle for each diet
 
 ```{r}
-
+anovaGrowthRate <- anova()
 ```
 
 
