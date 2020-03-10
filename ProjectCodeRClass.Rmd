@@ -14,6 +14,15 @@ livervstl <- lm(individuals$liverwt ~ individuals$tlmm)
 livervstl
 plot(individuals$liverwt, individuals$tlmm)
 
+boxplot(individuals$wt ~ individuals$diet)
+boxplot(individuals$liverwt ~ individuals$diet)
+boxplot(individuals$percentviscera ~ individuals$diet)
+boxplot(individuals$tlmm ~ individuals$diet)
+boxplot(individuals$evisceratedwt ~ individuals$diet)
+boxplot(individuals$conditionfactor ~ individuals$diet)
+boxplot(individuals$hsi ~ individuals$diet)
+boxplot(individuals$wtdiff ~ individuals$diet)
+
 ```
 
 
@@ -27,7 +36,7 @@ All factors of Individuals (TL, Wt, Liver Weight, Eviscerated weight, condition 
 
 ```{r}
 lm1 <- lm(individuals$wt ~ individuals$tlmm)
-lm2 <- lm(individuals$liverwt ~ individuals$tlmm)
+lmhsi <- lm(individuals$liverwt ~ individuals$tlmm)
 
 ```
 
