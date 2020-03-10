@@ -3,8 +3,19 @@ Load datasets
 individuals <- read.csv(file = "individuals_data.csv", header = TRUE, sep = ",")
 diets <- read.csv(file = "diets_data.csv", header = TRUE, sep = ",")
 dryfishweights <- read.csv(file = "dryfishweights_data.csv", header = TRUE, sep = ",")
+tankweights <- read.csv(file = "tankweights_data.csv", header = TRUE, sep = ",")
 
 ```
+
+
+Plot Data
+```{r}
+livervstl <- lm(individuals$liverwt ~ individuals$tlmm)
+livervstl
+plot(individuals$liverwt, individuals$tlmm)
+
+```
+
 
 
 Modelling
@@ -15,6 +26,8 @@ Liver weight vs TL
 All factors of Individuals (TL, Wt, Liver Weight, Eviscerated weight, condition factor, weight difference, % viscera, HSI)
 
 ```{r}
+lm1 <- lm(individuals$wt ~ individuals$tlmm)
+lm2 <- lm(individuals$liverwt ~ individuals$tlmm)
 
 ```
 
@@ -38,7 +51,15 @@ anovaevisceratedwt <- Anova(diets$evisceratedwt ~ diets$diet)
 anovacf <- Anova(diets$cfgperday ~ diets$diet)
 anovawtdiff <- Anova(diets$wtdiffgrams ~ diets$diet)
 anovapercentviscera <- Anova(diets$percentviscera ~ diets$diet)
-anovahis <- Anova(diets$his ~ diets$diet)
+anovahsi <- Anova(diets$hsi ~ diets$diet)
+
+#individuals
+
+aov1 <- aov(individuals$hsi ~ individuals$diet, data = individuals)
+summary(aov1)
+aov1
+posthoc1 <- TukeyHSD(x=aov1, 'individuals$diet', conf.level=0.95)
+posthoc1
 ```
 
 
