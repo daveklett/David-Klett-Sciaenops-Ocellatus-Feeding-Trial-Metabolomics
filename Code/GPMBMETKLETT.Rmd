@@ -16,7 +16,11 @@ proximates <- read.csv(file = "./CSV Data Sheets/proximates_data.csv", header = 
 
 Plot Data
 ```{r}
-plot(individuals$wt ~ individuals$tlmm)
+plot(individuals$wt ~ individuals$tlmm, xlab = "Individual Total Length (mm)", ylab = "Individual Weight (g)", main = "Individual Weight vs Length Relationship")
+lm01 <- lm(individuals$wt ~ individuals$tlmm)
+abline(lm01, col = "blue")
+summary(lm01)
+
 plot(individuals$liverwt, individuals$tlmm)
 plot(individuals$liverwt, individuals$wt)
 plot(individuals$hsi, individuals$tlmm)
