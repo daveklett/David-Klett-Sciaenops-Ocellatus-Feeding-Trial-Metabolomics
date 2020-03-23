@@ -8,14 +8,23 @@ dryfishweights <- read.csv(file = "./CSV Data Sheets/dryfishweights_data.csv", h
 tankweights <- read.csv(file = "./CSV Data Sheets/tankweights_data.csv", header = TRUE)
 allfish <- read.csv(file = "./CSV Data Sheets/allfish_data.csv", header = TRUE)
 
+metabolomics <- read.csv(file = "./CSV Data Sheets/metabolomics_data.csv", header = TRUE)
+proximates <- read.csv(file = "./CSV Data Sheets/proximates_data.csv", header = TRUE)
+
 ```
 
 
 Plot Data
 ```{r}
-livervstl <- lm(individuals$liverwt ~ individuals$tlmm)
-livervstl
+plot(individuals$wt ~ individuals$tlmm)
 plot(individuals$liverwt, individuals$tlmm)
+plot(individuals$liverwt, individuals$wt)
+plot(individuals$hsi, individuals$tlmm)
+plot(individuals$hsi, individuals$wt)
+plot(individuals$conditionfactor ~ individuals$tlmm)
+plot(individuals$conditionfactor ~ individuals$wt)
+
+
 
 boxplot(individuals$wt ~ individuals$diet)
 boxplot(individuals$liverwt ~ individuals$diet)
@@ -70,13 +79,22 @@ anovapercentviscera <- Anova(diets$percentviscera ~ diets$diet)
 anovahsi <- Anova(diets$hsi ~ diets$diet)
 
 #individuals
+
+#hsi linear model
 lmhsi <- lm(individuals$hsi ~ individuals$diet, data = individuals)
 summary(lmhsi)
 aovhsi <- aov(individuals$hsi ~ individuals$diet, data = individuals)
 summary(aovhsi)
 aovhsi
-posthoc1 <- TukeyHSD(x=aovhsi, 'individuals$diet', conf.level=0.95)
+posthoc1 <- TukeyHSD(x=aovhsi, 'individuals$diet', conf.level=0.99)
 posthoc1
+
+#liverwt linear model
+lmliverwt <- lm(individuals$liverwt ~ individuals$diet)
+summary(lmliverwt)
+aovliverwt <- aov(individuals$liverwt ~ individuals$diet)
+summary(aovliverwt)
+posthoc2 <- TukeyHSD(x=aovliverwt, 'individuals$diet', conf.level=0.99)
 ```
 
 
@@ -85,3 +103,44 @@ T tests for: Justin sampling average weight and individual weights from my sampl
 ```{r}
 
 ```
+
+
+PCA Coding for Metabolomics Analysis
+```{r}
+
+```
+
+
+ANOVA's for Proximate Analysis and bar plots of proximates
+```{r}
+protein <- table(proximates$protein)
+barplot(protein, main="Protein comparison among diet treatments", 
+   xlab="Diets")
+
+fat <- table(proximates$fat)
+barplot(fat, main="Fat comparison among diet treatments", 
+   xlab="Diets")
+
+carb <- table(proximates$carb)
+barplot(carb, main="Carbohydrate comparison among diet treatments", 
+   xlab="Diets")
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
