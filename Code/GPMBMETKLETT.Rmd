@@ -3,16 +3,22 @@ Load datasets
 individuals <- individuals_data
 individuals <- read.csv("./CSV Data Sheets/individuals_data.csv", header = TRUE)
 individuals$diet <- as.factor(individuals$diet)
+individuals$diet = factor(individuals$diet,c("FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL"))
 
-diets <- read.csv(file = "./CSV Data Sheets/diets_data.csv", header = TRUE)
 dryfishweights <- read.csv(file = "./CSV Data Sheets/dryfishweights_data.csv", header = TRUE)
-tankweights <- read.csv(file = "./CSV Data Sheets/tankweights_data.csv", header = TRUE)
+
 allfish <- allfish_data
 allfish <- read.csv(file = "./CSV Data Sheets/allfish_data.csv", header = TRUE)
-justinwt <- read.csv("./CSV Data Sheets/justinwt_data.csv", header = TRUE)
-justinwt <- justinwt_data
+allfish$diet = factor(allfish$diet,c("FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL"))
 
+justinwt <- justinwt_data
+justinwt <- read.csv("./CSV Data Sheets/justinwt_data.csv", header = TRUE)
+justinwt$diet = factor(justinwt$diet,c("FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL"))
+
+metabolomics <- metabolomics_data
 metabolomics <- read.csv(file = "./CSV Data Sheets/metabolomics_data.csv", header = TRUE)
+
+proximates <- proximates_data
 proximates <- read.csv(file = "./CSV Data Sheets/proximates_data.csv", header = TRUE)
 
 ```
@@ -49,50 +55,65 @@ lmdf3 <- lm(df$individuals.liverwt.individuals.diet....8. ~ df$individuals.wt.in
 abline(lmdf3, col = "blue")
 summary(lmdf3)
 
-plot(individuals$hsi, individuals$tlmm)
-plot(individuals$hsi, individuals$wt)
-plot(individuals$conditionfactor ~ individuals$tlmm)
-plot(individuals$conditionfactor ~ individuals$wt)
-
-
-mean(individuals$wt[individuals$diet == 1])
-mean(individuals$wt[individuals$diet == 2])
-mean(individuals$wt[individuals$diet == 3])
-mean(individuals$wt[individuals$diet == 4])
-mean(individuals$wt[individuals$diet == 5])
-mean(individuals$wt[individuals$diet == 6])
-mean(individuals$wt[individuals$diet == 7])
-mean(individuals$wt[individuals$diet == 8])
 
 boxplot(justinwt$weight ~ justinwt$diet, xlab = "Diet", ylab = "Average Fish Weight (g)", main = "Average Fish Weight Across Diets", ylim = c(0,200))
 
-boxplot(individuals$wt ~ individuals$diet, xlab = "Diet", ylab = "Fish Weight (g)", main = "Average Fish Weight Across Diets")
+boxplot(individuals$wt ~ individuals$diet, xlab = "Diet", ylab = "Fish Weight (g)", main = "Average Fish Weight Across Diets", ylim = c(0,200))
+
 boxplot(individuals$liverwt ~ individuals$diet, xlab = "Diet", ylab = "Liver Weight (g)", main = "Average Fish Liver Weight Across Diets")
-boxplot(individuals$percentviscera ~ individuals$diet, xlab = "Diet", ylab = "Percent Viscera (%)", main = "Average Fish Percent Viscera Across Diets")
+
+boxplot(individuals$percentviscera ~ individuals$diet, xlab = "Diet", ylab = "Percent Viscera (%)", main = "Average Fish Percent Viscera Across Diets", ylim = c(0,16))
+
 boxplot(individuals$tlmm ~ individuals$diet, xlab = "Diet", ylab = "Total Length (mm)", main = "Average Fish Total Length Across Diets")
+
 boxplot(individuals$evisceratedwt ~ individuals$diet, xlab = "Diet", ylab = "Eviscerated Weight (g)", main = "Average Fish Eviscerated Weights Across Diets")
+
 boxplot(individuals$conditionfactor ~ individuals$diet, xlab = "Diet", ylab = "Condition Factor (g/cm^3)", main = "Average Fish Condition Factor Across Diets")
+
 boxplot(individuals$hsi ~ individuals$diet, xlab = "Diet", ylab = "HSI (g/mm)*100", main = "Average Fish Heposomatic Index Across Diets")
-boxplot(individuals$wtdiff ~ individuals$diet, xlab = "Diet", ylab = "Weight Difference (g)", main = "Average Fish Total Weight - Eviscerated Weight Across Diets")
+
+boxplot(individuals$wtdiff ~ individuals$diet, xlab = "Diet", ylab = "Weight Difference (g)", main = "Average Fish Total Weight - Eviscerated Weight Across Diets", ylim = c(0,20))
 
 
-boxplot(allfish$wt ~ allfish$diet)
-boxplot(allfish$tlmm ~ allfish$diet)
+boxplot(allfish$wt ~ allfish$diet, xlab = "Diet", ylab = "Average Fish Weight (g)", main = "Average Fish Weight Across Diets", ylim = c(0,250))
+
+boxplot(allfish$tlmm ~ allfish$diet, xlab = "Diet", ylab = "Average Total Length (mm)", main = "Average Fish Total Length Across Diets", ylim = c(0,300))
 
 ```
 
 
 
-Modelling
-Models for: Individual treatments and across treatments
-
-TL vs weight
-Liver weight vs TL
-All factors of Individuals (TL, Wt, Liver Weight, Eviscerated weight, condition factor, weight difference, % viscera, HSI)
-
+Mean weights compated between justin, sampling, and sampling and drying to see if there are any huge discrepancies.
 ```{r}
-lm1 <- lm(individuals$wt ~ individuals$tlmm)
-lmhsi <- lm(individuals$liverwt ~ individuals$tlmm)
+#mean average fish weight my sampling only
+mean(justinwt$weight[justinwt$diet == "FSHSQ"])
+mean(justinwt$weight[justinwt$diet == "FSH"])
+mean(justinwt$weight[justinwt$diet == "FSQ"])
+mean(justinwt$weight[justinwt$diet == "SHSQ"])
+mean(justinwt$weight[justinwt$diet == "F"])
+mean(justinwt$weight[justinwt$diet == "SH"])
+mean(justinwt$weight[justinwt$diet == "SQ"])
+mean(justinwt$weight[justinwt$diet == "PELL"])
+
+#mean average fish weight my sampling only
+mean(individuals$wt[individuals$diet == "FSHSQ"])
+mean(individuals$wt[individuals$diet == "FSH"])
+mean(individuals$wt[individuals$diet == "FSQ"])
+mean(individuals$wt[individuals$diet == "SHSQ"])
+mean(individuals$wt[individuals$diet == "F"])
+mean(individuals$wt[individuals$diet == "SH"])
+mean(individuals$wt[individuals$diet == "SQ"])
+mean(individuals$wt[individuals$diet == "PELL"])
+
+#mean average fish weight my sampling and drying
+mean(allfish$wt[allfish$diet == "FSHSQ"])
+mean(allfish$wt[allfish$diet == "FSH"])
+mean(allfish$wt[allfish$diet == "FSQ"])
+mean(allfish$wt[allfish$diet == "SHSQ"])
+mean(allfish$wt[allfish$diet == "F"])
+mean(allfish$wt[allfish$diet == "SH"])
+mean(allfish$wt[allfish$diet == "SQ"])
+mean(allfish$wt[allfish$diet == "PELL"])
 
 ```
 
@@ -165,7 +186,7 @@ summary(aovviscera)
 posthoc5 <- TukeyHSD(x=aovviscera, 'individuals$diet', conf.level=0.99)
 posthoc5
 
-#tlmm linear model
+#condition factor linear model
 lmcf <- lm(individuals$conditionfactor ~ individuals$diet)
 summary(lmcf)
 aovcf <- aov(individuals$conditionfactor ~ individuals$diet)
@@ -176,14 +197,8 @@ posthoc6
 ```
 
 
-T tests
-T tests for: Justin sampling average weight and individual weights from my sampling for whole fish and muscle for each diet
-```{r}
-
-```
-
-
 PCA Coding for Metabolomics Analysis
+RDA indirect ordination and then do a direct ordination
 ```{r}
 
 ```
