@@ -1,12 +1,16 @@
 Load datasets
 ```{r}
+individuals <- individuals_data
 individuals <- read.csv("./CSV Data Sheets/individuals_data.csv", header = TRUE)
 individuals$diet <- as.factor(individuals$diet)
 
 diets <- read.csv(file = "./CSV Data Sheets/diets_data.csv", header = TRUE)
 dryfishweights <- read.csv(file = "./CSV Data Sheets/dryfishweights_data.csv", header = TRUE)
 tankweights <- read.csv(file = "./CSV Data Sheets/tankweights_data.csv", header = TRUE)
+allfish <- allfish_data
 allfish <- read.csv(file = "./CSV Data Sheets/allfish_data.csv", header = TRUE)
+justinwt <- read.csv("./CSV Data Sheets/justinwt_data.csv", header = TRUE)
+justinwt <- justinwt_data
 
 metabolomics <- read.csv(file = "./CSV Data Sheets/metabolomics_data.csv", header = TRUE)
 proximates <- read.csv(file = "./CSV Data Sheets/proximates_data.csv", header = TRUE)
@@ -21,23 +25,55 @@ lm01 <- lm(individuals$wt ~ individuals$tlmm)
 abline(lm01, col = "blue")
 summary(lm01)
 
-plot(individuals$liverwt, individuals$tlmm)
-plot(individuals$liverwt, individuals$wt)
+plot(individuals$tlmm, individuals$liverwt, xlab = "Individual Total Length (mm)", ylab = "Individual Liver Weight (g)", main = "Individual Total Length vs Liver Weight HSI Relationship")
+lm02 <- lm(individuals$liverwt ~ individuals$tlmm)
+abline(lm02, col = "blue")
+summary(lm02)
+#taking out diet 8 makes model much better; shows difference in pellets w/natural diets
+df2 <- data.frame(individuals$diet[individuals$diet != 8], individuals$tlmm[individuals$diet != 8], individuals$liverwt[individuals$diet != 8])
+df2
+plot(df2$individuals.tlmm.individuals.diet....8.,df2$individuals.liverwt.individuals.diet....8.)
+lmdf2 <- lm(df2$individuals.liverwt.individuals.diet....8. ~ df2$individuals.tlmm.individuals.diet....8.)
+abline(lmdf2, col = "blue")
+summary(lmdf2)
+
+plot(individuals$wt, individuals$liverwt, xlab = "Individual Weight (g)", ylab = "Individual Liver Weight (g)", main = "Individual Weight vs Liver Weight Relationship")
+lm03 <- lm(individuals$liverwt ~ individuals$wt)
+abline(lm03, col = "blue")
+summary(lm03)
+#taking out diet 8 makes model much better; shows difference in pellets w/natural diets
+df3 <- data.frame(individuals$diet[individuals$diet != 8], individuals$wt[individuals$diet != 8], individuals$liverwt[individuals$diet != 8])
+df3
+plot(df3$individuals.wt.individuals.diet....8.,df3$individuals.liverwt.individuals.diet....8.)
+lmdf3 <- lm(df$individuals.liverwt.individuals.diet....8. ~ df$individuals.wt.individuals.diet....8.)
+abline(lmdf3, col = "blue")
+summary(lmdf3)
+
 plot(individuals$hsi, individuals$tlmm)
 plot(individuals$hsi, individuals$wt)
 plot(individuals$conditionfactor ~ individuals$tlmm)
 plot(individuals$conditionfactor ~ individuals$wt)
 
 
+mean(individuals$wt[individuals$diet == 1])
+mean(individuals$wt[individuals$diet == 2])
+mean(individuals$wt[individuals$diet == 3])
+mean(individuals$wt[individuals$diet == 4])
+mean(individuals$wt[individuals$diet == 5])
+mean(individuals$wt[individuals$diet == 6])
+mean(individuals$wt[individuals$diet == 7])
+mean(individuals$wt[individuals$diet == 8])
 
-boxplot(individuals$wt ~ individuals$diet)
-boxplot(individuals$liverwt ~ individuals$diet)
-boxplot(individuals$percentviscera ~ individuals$diet)
-boxplot(individuals$tlmm ~ individuals$diet)
-boxplot(individuals$evisceratedwt ~ individuals$diet)
-boxplot(individuals$conditionfactor ~ individuals$diet)
-boxplot(individuals$hsi ~ individuals$diet)
-boxplot(individuals$wtdiff ~ individuals$diet)
+boxplot(justinwt$weight ~ justinwt$diet, xlab = "Diet", ylab = "Average Fish Weight (g)", main = "Average Fish Weight Across Diets", ylim = c(0,200))
+
+boxplot(individuals$wt ~ individuals$diet, xlab = "Diet", ylab = "Fish Weight (g)", main = "Average Fish Weight Across Diets")
+boxplot(individuals$liverwt ~ individuals$diet, xlab = "Diet", ylab = "Liver Weight (g)", main = "Average Fish Liver Weight Across Diets")
+boxplot(individuals$percentviscera ~ individuals$diet, xlab = "Diet", ylab = "Percent Viscera (%)", main = "Average Fish Percent Viscera Across Diets")
+boxplot(individuals$tlmm ~ individuals$diet, xlab = "Diet", ylab = "Total Length (mm)", main = "Average Fish Total Length Across Diets")
+boxplot(individuals$evisceratedwt ~ individuals$diet, xlab = "Diet", ylab = "Eviscerated Weight (g)", main = "Average Fish Eviscerated Weights Across Diets")
+boxplot(individuals$conditionfactor ~ individuals$diet, xlab = "Diet", ylab = "Condition Factor (g/cm^3)", main = "Average Fish Condition Factor Across Diets")
+boxplot(individuals$hsi ~ individuals$diet, xlab = "Diet", ylab = "HSI (g/mm)*100", main = "Average Fish Heposomatic Index Across Diets")
+boxplot(individuals$wtdiff ~ individuals$diet, xlab = "Diet", ylab = "Weight Difference (g)", main = "Average Fish Total Weight - Eviscerated Weight Across Diets")
 
 
 boxplot(allfish$wt ~ allfish$diet)
@@ -97,8 +133,46 @@ posthoc1
 lmliverwt <- lm(individuals$liverwt ~ individuals$diet)
 summary(lmliverwt)
 aovliverwt <- aov(individuals$liverwt ~ individuals$diet)
+aovliverwt
 summary(aovliverwt)
 posthoc2 <- TukeyHSD(x=aovliverwt, 'individuals$diet', conf.level=0.99)
+posthoc2
+
+#wt linear model
+lmwt <- lm(individuals$wt ~ individuals$diet)
+summary(lmwt)
+aovwt <- aov(individuals$wt ~ individuals$diet)
+aovwt
+summary(aovwt)
+posthoc3 <- TukeyHSD(x=aovwt, 'individuals$diet', conf.level=0.99)
+posthoc3
+
+#tlmm linear model
+lmtlmm <- lm(individuals$tlmm ~ individuals$diet)
+summary(lmtlmm)
+aovtlmm <- aov(individuals$tlmm ~ individuals$diet)
+aovtlmm
+summary(aovtlmm)
+posthoc4 <- TukeyHSD(x=aovtlmm, 'individuals$diet', conf.level=0.99)
+posthoc4
+
+#%viscera linear model
+lmviscera <- lm(individuals$percentviscera ~ individuals$diet)
+summary(lmviscera)
+aovviscera <- aov(individuals$percentviscera ~ individuals$diet)
+aovviscera
+summary(aovviscera)
+posthoc5 <- TukeyHSD(x=aovviscera, 'individuals$diet', conf.level=0.99)
+posthoc5
+
+#tlmm linear model
+lmcf <- lm(individuals$conditionfactor ~ individuals$diet)
+summary(lmcf)
+aovcf <- aov(individuals$conditionfactor ~ individuals$diet)
+aovcf
+summary(aovcf)
+posthoc6 <- TukeyHSD(x=aovcf, 'individuals$diet', conf.level=0.99)
+posthoc6
 ```
 
 
