@@ -1,0 +1,39 @@
+individuals_data
+
+This file includes data from the final time week 12 sampling. We sacrificed 72 individuals, 3 per tank, 9 per treatment, and took the following data for each fish (column name):
+* Fish identification (fishid)
+* Weight in grams (wt)
+* Total Length (tlmm)
+* Liver weight in grams (liverwt)
+* Weight in grams after removing liver and viscera (evisceratedwt)
+* Condition factor: weight/total length (conditionfactor)
+* Difference in weight before and after evisceration (wtdiff)
+* Percent viscera weight of body weight (percentviscera)
+* Heposomatic index: liver weight/total length (hsi)
+
+
+
+diets_data 
+
+This file includes data from the final time week 12 sampling. This is average values of tanks, so 3 replicates of each diet. The file includes the following data (column name):
+
+
+
+dryfishweights_data
+
+This file includes data from drying whole fish and muscle samples for proximate analysis. I dried the samples in an oven at 80 degrees C for 1 week. The data taken is as follows (column name):
+* Fish identification (Fish)
+* Tray identification in oven (trayid)
+* Diet number (treatment)
+* Whole fish (wf) or muscle fillet (f) sample
+* Total length (tlmm)
+* Weight in grams (wt)
+* Weight of the tray in grams (traywt)
+* Tray weight and sample initial weight (both)
+* Feb 28 (day0)
+* *Leap year, so day 1 was Feb 29
+* March 4 (day5) weights drying
+* March 5 (day6) weights drying
+* March 6 (day7) weights drying: final weights in grams of samples
+* H2O percent of initial weight as a proportion (h2o)
+* Dry matter percent of initial weight as a proportion (drymatter)

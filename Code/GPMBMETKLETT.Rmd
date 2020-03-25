@@ -26,12 +26,12 @@ proximates <- read.csv(file = "./CSV Data Sheets/proximates_data.csv", header = 
 
 Plot Data
 ```{r}
-plot(individuals$wt ~ individuals$tlmm, xlab = "Individual Total Length (mm)", ylab = "Individual Weight (g)", main = "Individual Weight vs Length Relationship")
+plot(individuals$wt ~ individuals$tlmm, xlab = "Individual Total Length (mm)", ylab = "Individual Weight (g)", main = "Individual Weight vs Length Relationship", pch = 16, las = 1)
 lm01 <- lm(individuals$wt ~ individuals$tlmm)
 abline(lm01, col = "blue")
 summary(lm01)
 
-plot(individuals$tlmm, individuals$liverwt, xlab = "Individual Total Length (mm)", ylab = "Individual Liver Weight (g)", main = "Individual Total Length vs Liver Weight HSI Relationship")
+plot(individuals$tlmm, individuals$liverwt, xlab = "Individual Total Length (mm)", ylab = "Individual Liver Weight (g)", main = "Individual Total Length vs Liver Weight HSI", pch = 16, las = 1)
 lm02 <- lm(individuals$liverwt ~ individuals$tlmm)
 abline(lm02, col = "blue")
 summary(lm02)
@@ -43,7 +43,7 @@ lmdf2 <- lm(df2$individuals.liverwt.individuals.diet....8. ~ df2$individuals.tlm
 abline(lmdf2, col = "blue")
 summary(lmdf2)
 
-plot(individuals$wt, individuals$liverwt, xlab = "Individual Weight (g)", ylab = "Individual Liver Weight (g)", main = "Individual Weight vs Liver Weight Relationship")
+plot(individuals$wt, individuals$liverwt, xlab = "Individual Weight (g)", ylab = "Individual Liver Weight (g)", main = "Individual Weight vs Liver Weight Relationship", pch = 16, las = 1)
 lm03 <- lm(individuals$liverwt ~ individuals$wt)
 abline(lm03, col = "blue")
 summary(lm03)
@@ -56,28 +56,28 @@ abline(lmdf3, col = "blue")
 summary(lmdf3)
 
 
-boxplot(justinwt$weight ~ justinwt$diet, xlab = "Diet", ylab = "Average Fish Weight (g)", main = "Average Fish Weight Across Diets", ylim = c(0,200))
+boxplot(justinwt$weight ~ justinwt$diet, xlab = "Diet", ylab = "Average Fish Weight (g)", main = "Average Fish Weight Across Diets", ylim = c(0,200), par(cex.axis=0.70))
 
-boxplot(individuals$wt ~ individuals$diet, xlab = "Diet", ylab = "Fish Weight (g)", main = "Average Fish Weight Across Diets", ylim = c(0,200))
+boxplot(individuals$wt ~ individuals$diet, xlab = "Diet", ylab = "Fish Weight (g)", main = "Average Fish Weight Across Diets", ylim = c(0,200), las = 1, par(cex.axis=0.70))
 
-boxplot(individuals$liverwt ~ individuals$diet, xlab = "Diet", ylab = "Liver Weight (g)", main = "Average Fish Liver Weight Across Diets")
+boxplot(individuals$liverwt ~ individuals$diet, xlab = "Diet", ylab = "Liver Weight (g)", main = "Average Fish Liver Weight Across Diets", las = 1, par(cex.axis=0.70))
 
-boxplot(individuals$percentviscera ~ individuals$diet, xlab = "Diet", ylab = "Percent Viscera (%)", main = "Average Fish Percent Viscera Across Diets", ylim = c(0,16))
+boxplot(individuals$percentviscera ~ individuals$diet, xlab = "Diet", ylab = "Percent Viscera (%)", main = "Average Fish Percent Viscera Across Diets", ylim = c(0,16), las = 1, par(cex.axis=0.70))
 
-boxplot(individuals$tlmm ~ individuals$diet, xlab = "Diet", ylab = "Total Length (mm)", main = "Average Fish Total Length Across Diets")
+boxplot(individuals$tlmm ~ individuals$diet, xlab = "Diet", ylab = "Total Length (mm)", main = "Average Fish Total Length Across Diets", las = 1, par(cex.axis=0.70))
 
-boxplot(individuals$evisceratedwt ~ individuals$diet, xlab = "Diet", ylab = "Eviscerated Weight (g)", main = "Average Fish Eviscerated Weights Across Diets")
+boxplot(individuals$evisceratedwt ~ individuals$diet, xlab = "Diet", ylab = "Eviscerated Weight (g)", main = "Average Fish Eviscerated Weights Across Diets", las = 1, par(cex.axis=0.70))
 
-boxplot(individuals$conditionfactor ~ individuals$diet, xlab = "Diet", ylab = "Condition Factor (g/cm^3)", main = "Average Fish Condition Factor Across Diets")
+boxplot(individuals$conditionfactor ~ individuals$diet, xlab = "Diet", ylab = "Condition Factor (g/cm^3)", main = "Average Fish Condition Factor Across Diets", las = 1, par(cex.axis=0.70))
 
-boxplot(individuals$hsi ~ individuals$diet, xlab = "Diet", ylab = "HSI (g/mm)*100", main = "Average Fish Heposomatic Index Across Diets")
+boxplot(individuals$hsi ~ individuals$diet, xlab = "Diet", ylab = "HSI (g/mm)*100", main = "Average Fish Heposomatic Index Across Diets", las = 1, par(cex.axis=0.70))
 
-boxplot(individuals$wtdiff ~ individuals$diet, xlab = "Diet", ylab = "Weight Difference (g)", main = "Average Fish Total Weight - Eviscerated Weight Across Diets", ylim = c(0,20))
+boxplot(individuals$wtdiff ~ individuals$diet, xlab = "Diet", ylab = "Weight Difference (g)", main = "Average Fish Total Weight - Eviscerated Weight", ylim = c(0,20), las = 1, par(cex.axis=0.70))
 
 
-boxplot(allfish$wt ~ allfish$diet, xlab = "Diet", ylab = "Average Fish Weight (g)", main = "Average Fish Weight Across Diets", ylim = c(0,250))
+boxplot(allfish$wt ~ allfish$diet, xlab = "Diet", ylab = "Average Fish Weight (g)", main = "Average Fish Weight Across Diets", ylim = c(0,250), las = 1, par(cex.axis=0.70))
 
-boxplot(allfish$tlmm ~ allfish$diet, xlab = "Diet", ylab = "Average Total Length (mm)", main = "Average Fish Total Length Across Diets", ylim = c(0,300))
+boxplot(allfish$tlmm ~ allfish$diet, xlab = "Diet", ylab = "Average Total Length (mm)", main = "Average Fish Total Length Across Diets", ylim = c(0,300), las = 1, par(cex.axis=0.70))
 
 ```
 
