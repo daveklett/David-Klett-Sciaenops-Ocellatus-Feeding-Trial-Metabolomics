@@ -1,25 +1,31 @@
 Load datasets
 ```{r}
 individuals <- individuals_data
-individuals <- read.csv("./CSV Data Sheets/individuals_data.csv", header = TRUE)
+individuals <- read.csv("./CSV files/individuals_data.csv", header = TRUE)
 individuals$diet <- as.factor(individuals$diet)
 individuals$diet = factor(individuals$diet,c("FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL"))
 
-dryfishweights <- read.csv(file = "./CSV Data Sheets/dryfishweights_data.csv", header = TRUE)
+dryfishweights <- read.csv(file = "./CSV files/dryfishweights_data.csv", header = TRUE)
 
 allfish <- allfish_data
-allfish <- read.csv(file = "./CSV Data Sheets/allfish_data.csv", header = TRUE)
+allfish <- read.csv(file = "./files/allfish_data.csv", header = TRUE)
 allfish$diet = factor(allfish$diet,c("FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL"))
 
 justinwt <- justinwt_data
-justinwt <- read.csv("./CSV Data Sheets/justinwt_data.csv", header = TRUE)
+justinwt <- read.csv("./CSV files/justinwt_data.csv", header = TRUE)
 justinwt$diet = factor(justinwt$diet,c("FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL"))
 
 metabolomics <- metabolomics_data
-metabolomics <- read.csv(file = "./CSV Data Sheets/metabolomics_data.csv", header = TRUE)
+metabolomics <- read.csv(file = "./CSV files/metabolomics_data.csv", header = TRUE)
 
 proximates <- proximates_data
-proximates <- read.csv(file = "./CSV Data Sheets/proximates_data.csv", header = TRUE)
+proximates <- read.csv(file = "./CSV files/proximates_data.csv", header = TRUE)
+
+water <- weeklywaterquality_data
+water <- read.csv(file = "./CSV files/weeklywaterquality_data", header = TRUE)
+
+daily <- dailywaterquality_data
+daily <- read.csv(file = "./CSV files/dailywaterquality_data", header = TRUE)
 
 ```
 
@@ -236,10 +242,35 @@ barplot(carb, main="Carbohydrate comparison among diet treatments",
 ```
 
 
+Weekly Water Quality Range, mean, stdev
+```{r}
+mean(water$`Ammonia mg/L`)
+sd(water$`Ammonia mg/L`)
+range(water$`Ammonia mg/L`)
+mean(water$`Nitrite mg/L`, na.rm = TRUE)
+sd(water$`Nitrite mg/L`, na.rm = TRUE)
+range(water$`Nitrite mg/L`, na.rm = TRUE)
+mean(water$`Nitrate mg/L`, na.rm = TRUE)
+sd(water$`Nitrate mg/L`, na.rm = TRUE)
+range(water$`Nitrate mg/L`, na.rm = TRUE)
+```
 
 
-
-
+Daily Water Quality Range, mean, stdev
+```{r}
+mean(daily$temp)
+sd(daily$temp)
+range(daily$temp)
+mean(daily$do, na.rm = TRUE)
+sd(daily$do, na.rm = TRUE)
+range(daily$do, na.rm = TRUE)
+mean(daily$sal)
+sd(daily$sal)
+range(daily$sal)
+mean(daily$pH)
+sd(daily$pH)
+range(daily$pH)
+```
 
 
 
