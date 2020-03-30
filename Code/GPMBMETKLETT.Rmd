@@ -220,7 +220,41 @@ posthoc6
 PCA Coding for Metabolomics Analysis
 RDA indirect ordination and then do a direct ordination
 ```{r}
+met_pca <- rda(metabolomics, scale = TRUE)
+met_pca
+str(met_pca)
+met_pca$
+met_pca$tot.chi
+met_pca$CA$eig
+sum(met_pca$CA$eig)
+round(met_pca$CA$eig / met_pca$tot.chi, 2)
+plot(met_pca)
+biplot(met_pca)
+cleanplot.pca(met_pca)
+ordiplot(met_pca, display = 'met')
+orditorp(met_pca, display = 'met')
 
+met_mds <- metaMDS(metabolomics)
+plot(met_mds)
+
+plot(met_mds, type='n')
+ text(met_mds, 'met', cex=.5)
+ # generate vector of colors 
+ color_vect = rev(terrain.colors(6))[-1]
+ points(met_mds, 'diet', pch=19, 
+        col=color_vect[met.env$diet])
+ legend('topright', paste("diet =", 1:5, sep=''), 
+        col=color_vect, pch=19)
+ 
+ # RDA number 2
+ rda_met <- rda(met, met.env)
+ rda_met
+
+ RsquareAdj(rda_met)
+ 
+ plot(rda_met, type='n', scaling=1)
+orditorp(rda_met, display='met', cex=0.5, scaling=1, col='blue')
+text(rda_met, display='met', col='red')
 ```
 
 
