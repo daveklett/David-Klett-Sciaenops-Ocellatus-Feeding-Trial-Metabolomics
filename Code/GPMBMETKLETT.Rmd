@@ -27,6 +27,8 @@ water <- read.csv(file = "./CSV files/weeklywaterquality_data", header = TRUE)
 daily <- dailywaterquality_data
 daily <- read.csv(file = "./CSV files/dailywaterquality_data", header = TRUE)
 
+bucket <- bucketexample2_data
+bucket <- read.csv(file = "./CSV files/bucketexample2_data", header = TRUE)
 ```
 
 
@@ -124,6 +126,15 @@ mean(individuals$wt[individuals$diet == "F"])
 mean(individuals$wt[individuals$diet == "SH"])
 mean(individuals$wt[individuals$diet == "SQ"])
 mean(individuals$wt[individuals$diet == "PELL"])
+
+sd(individuals$wt[individuals$diet == "FSHSQ"])
+sd(individuals$wt[individuals$diet == "FSH"])
+sd(individuals$wt[individuals$diet == "FSQ"])
+sd(individuals$wt[individuals$diet == "SHSQ"])
+sd(individuals$wt[individuals$diet == "F"])
+sd(individuals$wt[individuals$diet == "SH"])
+sd(individuals$wt[individuals$diet == "SQ"])
+sd(individuals$wt[individuals$diet == "PELL"])
 
 #mean average fish weight my sampling and drying
 mean(allfish$wt[allfish$diet == "FSHSQ"])
@@ -319,6 +330,8 @@ range(daily$sal)
 mean(daily$pH)
 sd(daily$pH)
 range(daily$pH)
+
+
 ```
 
 
