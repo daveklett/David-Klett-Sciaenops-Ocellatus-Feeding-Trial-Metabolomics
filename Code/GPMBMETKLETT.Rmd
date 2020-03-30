@@ -90,7 +90,7 @@ boxplot(individuals$evisceratedwt ~ individuals$diet, xlab = "Diet", ylab = "Evi
 
 boxplot(individuals$conditionfactor ~ individuals$diet, xlab = "Diet", ylab = "Condition Factor (g/cm^3)", main = "Average Fish Condition Factor Across Diets", las = 1, par(cex.axis=0.70))
 
-boxplot(individuals$hsi ~ individuals$diet, xlab = "Diet", ylab = "HSI (g/mm)*100", main = "Average Fish Heposomatic Index Across Diets", las = 1, par(cex.axis=0.70))
+boxplot(individuals$hsi ~ individuals$diet, xlab = "Diet", ylab = "HSI", main = "Average Fish Heposomatic Index Across Diets", las = 1, par(cex.axis=0.70))
 
 boxplot(individuals$wtdiff ~ individuals$diet, xlab = "Diet", ylab = "Weight Difference (g)", main = "Average Fish Total Weight - Eviscerated Weight", ylim = c(0,20), las = 1, par(cex.axis=0.70))
 

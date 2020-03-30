@@ -16,13 +16,13 @@ lm01 <- lm(individuals$wt ~ individuals$tlmm)
 abline(lm01, col = "blue")
 summary(lm01)
 
-plot(individuals$tlmm, individuals$liverwt, xlab = "Individual Total Length (mm)", ylab = "Individual Liver Weight (g)", main = "Individual Total Length vs Liver Weight HSI", pch = 16, las = 1)
+plot(individuals$tlmm, individuals$liverwt, xlab = "Individual Total Length (mm)", ylab = "Individual Liver Weight (g)", main = "Individual Total Length vs Liver Weight", pch = 16, las = 1)
 lm02 <- lm(individuals$liverwt ~ individuals$tlmm)
 abline(lm02, col = "blue")
 summary(lm02)
 
 
-plot(individuals$wt, individuals$liverwt, xlab = "Individual Weight (g)", ylab = "Individual Liver Weight (g)", main = "Individual Weight vs Liver Weight Relationship", pch = 16, las = 1)
+plot(individuals$wt, individuals$liverwt, xlab = "Individual Weight (g)", ylab = "Individual Liver Weight (g)", main = "Individual Weight vs Liver Weight Relationship HSI", pch = 16, las = 1)
 lm03 <- lm(individuals$liverwt ~ individuals$wt)
 abline(lm03, col = "blue")
 summary(lm03)
@@ -43,7 +43,7 @@ boxplot(individuals$evisceratedwt ~ individuals$diet, xlab = "Diet", ylab = "Evi
 
 boxplot(individuals$conditionfactor ~ individuals$diet, xlab = "Diet", ylab = "Condition Factor (g/cm^3)", main = "Average Fish Condition Factor Across Diets", las = 1,par(cex.axis=0.70))
 
-boxplot(individuals$hsi ~ individuals$diet, xlab = "Diet", ylab = "HSI (g/mm)*100", main = "Average Fish Heposomatic Index Across Diets", las = 1,par(cex.axis=0.70))
+boxplot(individuals$hsi ~ individuals$diet, xlab = "Diet", ylab = "HSI", main = "Average Fish Hepatosomatic Index Across Diets", las = 1,par(cex.axis=0.70))
 
 boxplot(individuals$wtdiff ~ individuals$diet, xlab = "Diet", ylab = "Weight Difference (g)", main = "Average Fish Total Weight - Eviscerated Weight", ylim = c(0,20), las = 1,par(cex.axis=0.70))
 
