@@ -217,6 +217,21 @@ posthoc6
 ```
 
 
+
+PCA Example with bucket data from Fabio
+```{r}
+bucket <- bucketexample2_data
+bucket_pca <- rda(bucket)
+bucket_pca
+plot(bucket_pca)
+biplot(bucket_pca)
+cleanplot.pca(bucket_pca)
+
+
+
+
+```
+
 PCA Coding for Metabolomics Analysis
 RDA indirect ordination and then do a direct ordination
 ```{r}
