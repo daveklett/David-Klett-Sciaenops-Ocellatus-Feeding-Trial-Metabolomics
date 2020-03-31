@@ -16,6 +16,7 @@ lm01 <- lm(individuals$wt ~ individuals$tlmm)
 abline(lm01, col = "blue")
 summary(lm01)
 
+
 plot(individuals$tlmm, individuals$liverwt, xlab = "Individual Total Length (mm)", ylab = "Individual Liver Weight (g)", main = "Individual Total Length vs Liver Weight", pch = 16, las = 1)
 lm02 <- lm(individuals$liverwt ~ individuals$tlmm)
 abline(lm02, col = "blue")
