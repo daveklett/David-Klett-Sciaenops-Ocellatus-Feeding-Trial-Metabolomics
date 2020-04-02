@@ -29,6 +29,9 @@ daily <- read.csv(file = "./CSV files/dailywaterquality_data", header = TRUE)
 
 bucket <- bucketexample2_data
 bucket <- read.csv(file = "./CSV files/bucketexample2_data", header = TRUE)
+
+bucket.env <- bucketexample2_data_env
+bucket.env <- read.csv(file = "./CSV files/bucketexample2_data.env.csv", header = TRUE)
 ```
 
 
@@ -233,15 +236,50 @@ posthoc6
 
 PCA Example with bucket data from Fabio
 ```{r}
+bucket.env <- bucketexample2_data_env
+
+library(vegan)
 bucket <- t(bucketexample2_data)
 bucket_pca <- rda(bucket)
 bucket_pca
 plot(bucket_pca)
+str(bucket_pca)
+bucket_pca$
+bucket_pca$tot.chi
+bucket_pca$CA$eig
+sum(bucket_pca$CA$eig)
+round(bucket_pca$CA$eig / bucket_pca$tot.chi, 2)
 biplot(bucket_pca)
 cleanplot.pca(bucket_pca)
-#Eigen values; then direct ordination
 
+ordiplot(bucket_pca, display = 'sp')
+orditorp(bucket_pca, display = 'sp')
 
+# Negative numbers may affect results of NMDS!
+bucket_mds <- metaMDS(bucket)
+plot(bucket_mds)
+
+# RDA number 2
+ rda_bucket <- rda(bucket, bucket.env)
+ rda_bucket
+
+ RsquareAdj(rda_bucket)
+ 
+ plot(rda_bucket, type='n', scaling=1)
+orditorp(rda_bucket, display='sp', cex=0.5, scaling=1, col='blue')
+text(rda_bucket, display='cn', col='red')
+
+bucket.env$diet
+levels(bucket.env$diet)
+
+cca_bucket <- cca(bucket ~ ., data = bucket.env)
+cca_bucket
+RsquareAdj(cca_bucket, 100)
+anova(cca_bucket, permutations = 999)
+anova(cca_bucket, by='margin', permutations = 999)
+plot(cca_bucket, type='n', scaling=1)
+orditorp(cca_bucket, display='sp', cex=0.5, scaling=1, col='blue')
+text(cca_bucket, display='bp', col='red')
 
 ```
 
