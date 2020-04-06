@@ -4,12 +4,19 @@ output:
   html_document: default
 ---
 ```{r}
-individuals <- read.csv("./CSV files/individuals_data.csv", header = TRUE)
+# Read in data sets, need to import first to read; download from repo, then import to environment; knitted to Word to extract figures
+
+individuals <- individuals_data
+individuals$diet <- as.factor(individuals$diet)
 individuals$diet = factor(individuals$diet,c("FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL"))
-justinwt <- read.csv("./CSV files/justinwt_data.csv", header = TRUE)
-justinwt$diet = factor(justinwt$diet,c("FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL"))
-allfish <- read.csv(file = "./CSV files/allfish_data.csv", header = TRUE)
+
+allfish <- allfish_data
 allfish$diet = factor(allfish$diet,c("FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL"))
+
+justinwt <- justinwt_data
+justinwt$diet = factor(justinwt$diet,c("FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL"))
+
+#Plot significant data to put into presentation and Thesis
 
 plot(individuals$wt ~ individuals$tlmm, xlab = "Individual Total Length (mm)", ylab = "Individual Weight (g)", main = "Individual Weight vs Length Relationship", pch = 16, las = 1)
 lm01 <- lm(individuals$wt ~ individuals$tlmm)

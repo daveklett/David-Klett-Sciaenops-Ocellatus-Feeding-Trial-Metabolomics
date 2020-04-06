@@ -1,41 +1,43 @@
-Load datasets
+Load datasets and set factors as needed
 ```{r}
+# Read in data sets, need to import first to read; download from repo, then import to environment
+
 individuals <- individuals_data
-individuals <- read.csv("./CSV files/individuals_data.csv", header = TRUE)
+individuals <- read.csv(file = "./data/individuals_data.csv", header = TRUE)
 individuals$diet <- as.factor(individuals$diet)
 individuals$diet = factor(individuals$diet,c("FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL"))
 
-dryfishweights <- read.csv(file = "./CSV files/dryfishweights_data.csv", header = TRUE)
+dryfishweights <- read.csv(file = "./data/dryfishweights_data.csv", header = TRUE)
 
 allfish <- allfish_data
-allfish <- read.csv(file = "./files/allfish_data.csv", header = TRUE)
+allfish <- read.csv(file = "./data/allfish_data.csv", header = TRUE)
 allfish$diet = factor(allfish$diet,c("FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL"))
 
 justinwt <- justinwt_data
-justinwt <- read.csv("./CSV files/justinwt_data.csv", header = TRUE)
+justinwt <- read.csv("./data/justinwt_data.csv", header = TRUE)
 justinwt$diet = factor(justinwt$diet,c("FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL"))
 
 metabolomics <- metabolomics_data
-metabolomics <- read.csv(file = "./CSV files/metabolomics_data.csv", header = TRUE)
+metabolomics <- read.csv(file = "./data/metabolomics_data.csv", header = TRUE)
 
 proximates <- proximates_data
-proximates <- read.csv(file = "./CSV files/proximates_data.csv", header = TRUE)
+proximates <- read.csv(file = "./data/proximates_data.csv", header = TRUE)
 
 water <- weeklywaterquality_data
-water <- read.csv(file = "./CSV files/weeklywaterquality_data", header = TRUE)
+water <- read.csv(file = "./data/weeklywaterquality_data", header = TRUE)
 
 daily <- dailywaterquality_data
-daily <- read.csv(file = "./CSV files/dailywaterquality_data", header = TRUE)
+daily <- read.csv(file = "./data/dailywaterquality_data", header = TRUE)
 
 bucket <- bucketexample2_data
-bucket <- read.csv(file = "./CSV files/bucketexample2_data", header = TRUE)
+bucket <- read.csv(file = "./data/bucketexample2_data", header = TRUE)
 
 bucket.env <- bucketexample2_data_env
-bucket.env <- read.csv(file = "./CSV files/bucketexample2_data.env.csv", header = TRUE)
+bucket.env <- read.csv(file = "./data/bucketexample2_data.env.csv", header = TRUE)
 ```
 
 
-Plot Data
+Plot Data; this is relevant data to my thesis work; a couple models as well
 ```{r}
 plot(individuals$wt ~ individuals$tlmm, xlab = "Individual Total Length (mm)", ylab = "Individual Weight (g)", main = "Individual Weight vs Length Relationship", pch = 16, las = 1)
 lm01 <- lm(individuals$wt ~ individuals$tlmm)
@@ -83,6 +85,8 @@ abline(lmdf3, col = "blue")
 summary(lmdf3)
 
 
+# Show data as boxplots to show variation between diets
+
 boxplot(justinwt$weight ~ justinwt$diet, xlab = "Diet", ylab = "Average Fish Weight (g)", main = "Average Fish Weight Across Diets", ylim = c(0,200), par(cex.axis=0.70))
 
 boxplot(individuals$wt ~ individuals$diet, xlab = "Diet", ylab = "Fish Weight (g)", main = "Average Fish Weight Across Diets", ylim = c(0,200), las = 1, par(cex.axis=0.70))
@@ -110,7 +114,7 @@ boxplot(allfish$tlmm ~ allfish$diet, xlab = "Diet", ylab = "Average Total Length
 
 
 
-Mean weights compated between justin, sampling, and sampling and drying to see if there are any huge discrepancies.
+Mean weights from sampling all fish in all tanks (justin dataset), vs individuals samples and killed (individuals dataset), vs individuals sampled and killed and dried in oven (all fish dataset) to see if there are any glaring discrepancies
 ```{r}
 #mean average fish weight my sampling only
 mean(justinwt$weight[justinwt$diet == "FSHSQ"])
@@ -132,6 +136,7 @@ mean(individuals$wt[individuals$diet == "SH"])
 mean(individuals$wt[individuals$diet == "SQ"])
 mean(individuals$wt[individuals$diet == "PELL"])
 
+#sd average fish weight my sampling only
 sd(individuals$wt[individuals$diet == "FSHSQ"])
 sd(individuals$wt[individuals$diet == "FSH"])
 sd(individuals$wt[individuals$diet == "FSQ"])
@@ -154,27 +159,13 @@ mean(allfish$wt[allfish$diet == "PELL"])
 ```
 
 
-Anova's
+Anova's and linear models and post hoc tests to determine statistical differences
 Anova's for: Across treatments
 
-All factors for diets (Growth Rate, SGR, Average weight, Average TL, FCR, Liver weight, Eviscerated weight, condition factor, weight diff, % viscera, HSI)
+All factors for individuals given diets ( SGR, Average weight, Average TL, FCR, Liver weight, Eviscerated weight, condition factor, weight diff, % viscera, HSI)
 All factors for Fish weights (% H20, Dry Matter, Body Weight)
-Justin sampling average weight and individual weights from my sampling for whole fish and muscle for each diet
 
 ```{r}
-library(car)
-
-anovagrowthrate <- Anova(diets$growthrategpday ~ diets$diet)
-anovasgr <- Anova(diets$sgr ~ diets$diet)
-anovaavewt <- Anova(diets$avewt ~ diets$diet)
-anovafcr <- Anova(diets$fcr ~ diets$diet)
-anovaliverwt <- Anova(diets$liverwt ~ diets$diet)
-anovaevisceratedwt <- Anova(diets$evisceratedwt ~ diets$diet)
-anovacf <- Anova(diets$cfgperday ~ diets$diet)
-anovawtdiff <- Anova(diets$wtdiffgrams ~ diets$diet)
-anovapercentviscera <- Anova(diets$percentviscera ~ diets$diet)
-anovahsi <- Anova(diets$hsi ~ diets$diet)
-
 #individuals
 
 #hsi linear model
@@ -234,7 +225,7 @@ posthoc6
 
 
 
-PCA Example with bucket data from Fabio
+PCA Example with bucket data from Fabio; this is to show what I want to do with my data to determine statistical differences among metabolomes
 ```{r}
 bucket.env <- bucketexample2_data_env
 
@@ -284,8 +275,9 @@ text(cca_bucket, display='bp', col='red')
 ```
 
 PCA Coding for Metabolomics Analysis
-RDA indirect ordination and then do a direct ordination
+RDA indirect ordination and then do a direct ordination;
 ```{r}
+#This code will not have any data with it now; just the template for now
 met_pca <- rda(metabolomics, scale = TRUE)
 met_pca
 str(met_pca)
@@ -326,6 +318,7 @@ text(rda_met, display='met', col='red')
 
 ANOVA's for Proximate Analysis and bar plots of proximates
 ```{r}
+#This code will not have any data with it now; just the template for now
 protein <- table(proximates$protein)
 barplot(protein, main="Protein comparison among diet treatments", 
    xlab="Diets")
@@ -342,7 +335,7 @@ barplot(carb, main="Carbohydrate comparison among diet treatments",
 ```
 
 
-Weekly Water Quality Range, mean, stdev
+Weekly Water Quality Range, mean, stdev for data table
 ```{r}
 mean(water$`Ammonia mg/L`)
 sd(water$`Ammonia mg/L`)
@@ -356,7 +349,7 @@ range(water$`Nitrate mg/L`, na.rm = TRUE)
 ```
 
 
-Daily Water Quality Range, mean, stdev
+Daily Water Quality Range, mean, stdev for data table
 ```{r}
 mean(daily$temp)
 sd(daily$temp)
