@@ -34,6 +34,11 @@ bucket <- read.csv(file = "./data/bucketexample2_data", header = TRUE)
 
 bucket.env <- bucketexample2_data_env
 bucket.env <- read.csv(file = "./data/bucketexample2_data.env.csv", header = TRUE)
+
+fcr <- fcr_data
+fcr <- read.csv(file = "./data/fcr_data.csv", header = TRUE)
+fcr$diet <- as.factor(fcr$diet)
+fcr$diet = factor(fcr$diet,c("FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL"))
 ```
 
 
@@ -110,6 +115,10 @@ boxplot(allfish$wt ~ allfish$diet, xlab = "Diet", ylab = "Average Fish Weight (g
 
 boxplot(allfish$tlmm ~ allfish$diet, xlab = "Diet", ylab = "Average Total Length (mm)", main = "Average Fish Total Length Across Diets", ylim = c(0,300), las = 1, par(cex.axis=0.70))
 
+
+boxplot(fcr$`wet fcr ave.` ~ fcr$diet, xlab = "Diet", ylab = "wet:wet FCR", main = "FCR of wet feed:wet biomass accross diets", ylim = c(0,8), las = 1, par(cex.axis=0.70))
+
+boxplot(fcr$`dry fcr ave.` ~ fcr$diet, xlab = "Diet", ylab = "dry:wet FCR", main = "FCR of dry feed:wet biomass accross diets", ylim = c(0,2), las = 1, par(cex.axis=0.70))
 ```
 
 
@@ -221,6 +230,23 @@ aovcf
 summary(aovcf)
 posthoc6 <- TukeyHSD(x=aovcf, 'individuals$diet', conf.level=0.99)
 posthoc6
+
+#Wet feed:wet biomass linear model
+lmfcrww <- lm(fcr$`wet fcr ave.` ~ fcr$diet)
+summary(lmfcrww)
+aovfcrww <- aov(fcr$`wet fcr ave.` ~ fcr$diet)
+aovfcrww
+summary(aovfcrww)
+posthoc7 <- TukeyHSD(x=aovfcrww, 'fcr$diet', conf.level=0.99)
+posthoc7
+
+#Dry feed:wet biomass linear model
+lmfcrdw <- lm(fcr$`dry fcr ave.` ~ fcr$diet)
+summary(lmfcrdw)
+aovfcrdw <- aov(fcr$`dry fcr ave.` ~ fcr$diet)
+summary(aovfcrdw)
+posthoc8 <- TukeyHSD(x=aovfcrdw, 'fcr$diet', conf.level=0.99)
+posthoc8
 ```
 
 
