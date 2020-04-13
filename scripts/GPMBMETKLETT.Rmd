@@ -44,6 +44,10 @@ fcr$diet = factor(fcr$diet,c("FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL"))
 
 Plot Data; this is relevant data to my thesis work; a couple models as well
 ```{r}
+qqplot(individuals$tlmm, individuals$wt)
+qqnorm(individuals$wt)
+#individuals$wt is normal, does not violate anova
+
 plot(individuals$wt ~ individuals$tlmm, xlab = "Individual Total Length (mm)", ylab = "Individual Weight (g)", main = "Individual Weight vs Length Relationship", pch = 16, las = 1)
 lm01 <- lm(individuals$wt ~ individuals$tlmm)
 abline(lm01, col = "blue")
