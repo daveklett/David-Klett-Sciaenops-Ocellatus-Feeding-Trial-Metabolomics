@@ -1,8 +1,8 @@
 ---
 output:
-  pdf_document: default
-  html_document: default
   word_document: default
+  html_document: default
+  pdf_document: default
 ---
 
 ```{r}
@@ -28,6 +28,12 @@ plot(individuals$wt ~ individuals$tlmm, xlab = "Individual Total Length (mm)", y
 lm01 <- lm(individuals$wt ~ individuals$tlmm)
 abline(lm01, col = "blue")
 summary(lm01)
+
+#log transform data for length weight relationship
+plot(log(individuals$wt) ~ log(individuals$tlmm), xlab = "log(Individual Total Length (mm))", ylab = "log(Individual Weight (g)", main = "Individual Weight vs Length Relationship", pch = 16, las = 1)
+lmlog <- lm(log(individuals$wt) ~ log(individuals$tlmm))
+abline(lmlog, col = "blue")
+summary(lmlog)
 
 plot(individuals$tlmm, individuals$liverwt, xlab = "Individual Total Length (mm)", ylab = "Individual Liver Weight (g)", main = "Individual Total Length vs Liver Weight HSI", pch = 16, las = 1)
 lm02 <- lm(individuals$liverwt ~ individuals$tlmm)

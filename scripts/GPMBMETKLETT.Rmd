@@ -258,6 +258,14 @@ aovfcrdw <- aov(fcr$`dry fcr ave.` ~ fcr$diet)
 summary(aovfcrdw)
 posthoc8 <- TukeyHSD(x=aovfcrdw, 'fcr$diet', conf.level=0.99)
 posthoc8
+
+#Specific Growth Rate linear model
+lmsgr <- lm(justinwt$sgr ~ justinwt$diet)
+summary(lmsgr)
+aovsgr <- aov(justinwt$sgr ~ justinwt$diet)
+summary(aovsgr)
+posthoc8 <- TukeyHSD(x=aovsgr, 'justinwt$diet', conf.level=0.99)
+posthoc8
 ```
 
 
