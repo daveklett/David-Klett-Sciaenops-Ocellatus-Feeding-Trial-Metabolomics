@@ -89,6 +89,7 @@ This file includes the water quality measurements that were taken every week dur
 This file shows the average fish weight derived from taking the total biomass of each tank at the conclusion of the feeding trial. The fish were sein netted out of the tanks and weighed, then averaged by dividing biomass by the number of fish in the tank. The individual tank numbers do not matter for this data. The data is given as follows (column name):
 *Treatment (diet)
 *Average fish weight (wt)
+*Specific Growth Rate for each tank (sgr)
 
 
 
