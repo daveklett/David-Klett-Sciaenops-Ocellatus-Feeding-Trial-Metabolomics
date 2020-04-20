@@ -50,102 +50,102 @@ qqnorm(individuals$tlmm)
 #individuals$wt and individuals$tlmm are normal, do not violate anova
 
 
-#1. Plot weight vs total length and get a regression line to see if any diet grew weird; also can see if we can predict the growth of the red drum in this study
+#Plot significant data to put into presentation and Thesis; tiff files so they are in much better resolution
+
+#1. Plot of weight and total length not log transformed
+tiff("wt~tlmm.tiff", width = 6, height = 4, units = 'in', res = 300)
 plot(individuals$wt ~ individuals$tlmm, xlab = "Individual Total Length (mm)", ylab = "Individual Weight (g)", main = "Individual Weight vs Length Relationship", pch = 16, las = 1)
 lm01 <- lm(individuals$wt ~ individuals$tlmm)
 abline(lm01, col = "blue")
 summary(lm01)
+lm001 <- lm(individuals$wt ~ individuals$tlmm) # Make plot
+dev.off()
 
-
-#2. log transform data for length weight relationship and do a new regression
+#2. Plot of weight and total length log transformed
+tiff("log(wt~tlmm).tiff", width = 6, height = 4, units = 'in', res = 300)
 plot(log(individuals$wt) ~ log(individuals$tlmm), xlab = "log(Individual Total Length (mm))", ylab = "log(Individual Weight (g)", main = "Individual Weight vs Length Relationship", pch = 16, las = 1)
 lmlog <- lm(log(individuals$wt) ~ log(individuals$tlmm))
 abline(lmlog, col = "blue")
 summary(lmlog)
+lm002 <- lm(log(individuals$wt) ~ log(individuals$tlmm)) # Make plot
+dev.off()
 
-
-#3. Exponential Model; wanted to see if there was a better model for weight and total length
-sortedindividuals <- individuals[order(individuals$tlmm),]
-theta.0 <- min(sortedindividuals$wt) * 0.5
-model.0 <- lm(log(sortedindividuals$wt - theta.0) ~ sortedindividuals$wt, data = sortedindividuals)  
-alpha.0 <- exp(coef(model.0)[1])
-beta.0 <- coef(model.0)[2]
-start <- list(alpha = alpha.0, beta = beta.0, theta = theta.0)
-start
-expmod <- nls(sortedindividuals$wt ~ alpha * exp(beta*sortedindividuals$tlmm) + theta, data = sortedindividuals, start = start)
-summary(expmod)
-plot(sortedindividuals$wt ~ sortedindividuals$tlmm, xlab = "Individual Total Length (mm)", ylab = "Individual Weight (g)", main = "Individual Weight vs Length Relationship", pch = 16, las = 1)
-lines(sortedindividuals$tlmm, predict(expmod, list(sortedindividuals$tlmm)), col = 'blue', lwd = 1)
-AIC(lm01)
-AIC(expmod)
-
-
-#4. Plot total length and liver weight and see if differences occur
+#3. Plot of total length and liver weight
+tiff("tlmm~liverwt.tiff", width = 5, height = 4, units = 'in', res = 300)
 plot(individuals$tlmm, individuals$liverwt, xlab = "Individual Total Length (mm)", ylab = "Individual Liver Weight (g)", main = "Individual Total Length vs Liver Weight HSI", pch = 16, las = 1)
 lm02 <- lm(individuals$liverwt ~ individuals$tlmm)
 abline(lm02, col = "blue")
 summary(lm02)
+lm003 <- lm(individuals$liverwt ~ individuals$tlmm) # Make plot
+dev.off()
 
-
-#4.1. Taking out diet 8 makes model much better; shows difference in pellets w/natural diets
-df2 <- data.frame(individuals$diet[individuals$diet != 8], individuals$tlmm[individuals$diet != 8], individuals$liverwt[individuals$diet != 8])
-df2
-plot(df2$individuals.tlmm.individuals.diet....8.,df2$individuals.liverwt.individuals.diet....8.)
-lmdf2 <- lm(df2$individuals.liverwt.individuals.diet....8. ~ df2$individuals.tlmm.individuals.diet....8.)
-abline(lmdf2, col = "blue")
-summary(lmdf2)
-
-
-#5. Plot weight and liver weight (HSI) and see if differences occur
+#4. Plot of HSI (weight and liver weight
+tiff("HSI.tiff", width = 5, height = 4, units = 'in', res = 300)
 plot(individuals$wt, individuals$liverwt, xlab = "Individual Weight (g)", ylab = "Individual Liver Weight (g)", main = "Individual Weight vs Liver Weight Relationship", pch = 16, las = 1)
 lm03 <- lm(individuals$liverwt ~ individuals$wt)
 abline(lm03, col = "blue")
 summary(lm03)
+lm004 <- lm(individuals$liverwt ~ individuals$wt) # Make plot
+dev.off()
 
 
-#5.2.Taking out diet 8 makes model much better; shows difference in pellets w/natural diets
-df3 <- data.frame(individuals$diet[individuals$diet != 8], individuals$wt[individuals$diet != 8], individuals$liverwt[individuals$diet != 8])
-df3
-plot(df3$individuals.wt.individuals.diet....8.,df3$individuals.liverwt.individuals.diet....8.)
-lmdf3 <- lm(df$individuals.liverwt.individuals.diet....8. ~ df$individuals.wt.individuals.diet....8.)
-abline(lmdf3, col = "blue")
-summary(lmdf3)
 
+# Boxplots showing differences in diet treatments given a parameter
 
-# Show data as boxplots to show variation between diets
+#1. Average Fish Weight
+tiff("Average Fish Weight.tiff", width = 5, height = 4, units = 'in', res = 300)
+boxplot(justinwt$weight ~ justinwt$diet, xlab = "Diet", ylab = "Average Fish Weight (g)", main = "Average Fish Weight Across Diets", ylim = c(0,200), las = 1,par(cex.axis=0.70)) # Make plot
+dev.off()
 
-#1. Plot weights from Justin weighing individual tanks (n = ~ 44-48 fish per diet)
-boxplot(justinwt$weight ~ justinwt$diet, xlab = "Diet", ylab = "Average Fish Weight (g)", main = "Average Fish Weight Across Diets", ylim = c(0,200), par(cex.axis=0.70))
+#2. Specific Growth Rate
+tiff("SGR.tiff", width = 5, height = 4, units = 'in', res = 300)
+boxplot(justinwt$sgr ~ justinwt$diet, xlab = "Diet", ylab = "SGR (%/day)", main = "Specific Growth Rate Across Diets", ylim = c(0,2.5), las = 1,par(cex.axis=0.70)) # Make plot
+dev.off()
 
+#3. Liver Weight
+tiff("Liver Weight.tiff", width = 5, height = 4, units = 'in', res = 300)
+boxplot(individuals$liverwt ~ individuals$diet, xlab = "Diet", ylab = "Liver Weight (g)", main = "Average Fish Liver Weight Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+dev.off()
 
-#2. Plot data taken during dissection sampling (n = 9 per diet)
-boxplot(individuals$wt ~ individuals$diet, xlab = "Diet", ylab = "Fish Weight (g)", main = "Average Fish Weight Across Diets", ylim = c(0,200), las = 1, par(cex.axis=0.70))
+#4. Liver Weight
+tiff("Percent Viscera.tiff", width = 5, height = 4, units = 'in', res = 300)
+boxplot(individuals$percentviscera ~ individuals$diet, xlab = "Diet", ylab = "Percent Viscera (%)", main = "Average Fish Percent Viscera Across Diets", ylim = c(0,16), las = 1,par(cex.axis=0.70)) # Make plot
+dev.off()
 
-boxplot(individuals$liverwt ~ individuals$diet, xlab = "Diet", ylab = "Liver Weight (g)", main = "Average Fish Liver Weight Across Diets", las = 1, par(cex.axis=0.70))
+#5. Total Length
+tiff("Total Length.tiff", width = 5, height = 4, units = 'in', res = 300)
+boxplot(individuals$tlmm ~ individuals$diet, xlab = "Diet", ylab = "Total Length (mm)", main = "Average Fish Total Length Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+dev.off()
 
-boxplot(individuals$percentviscera ~ individuals$diet, xlab = "Diet", ylab = "Percent Viscera (%)", main = "Average Fish Percent Viscera Across Diets", ylim = c(0,16), las = 1, par(cex.axis=0.70))
+#6. Eviscerated Weight
+tiff("Eviscerated Weight.tiff", width = 5, height = 4, units = 'in', res = 300)
+boxplot(individuals$evisceratedwt ~ individuals$diet, xlab = "Diet", ylab = "Eviscerated Weight (g)", main = "Average Fish Eviscerated Weights Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+dev.off()
 
-boxplot(individuals$tlmm ~ individuals$diet, xlab = "Diet", ylab = "Total Length (mm)", main = "Average Fish Total Length Across Diets", las = 1, par(cex.axis=0.70))
+#7. Condition Factor
+tiff("Condition Factor.tiff", width = 5, height = 4, units = 'in', res = 300)
+boxplot(individuals$conditionfactor ~ individuals$diet, xlab = "Diet", ylab = "Condition Factor (g/cm^3)", main = "Average Fish Condition Factor Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+dev.off()
 
-boxplot(individuals$evisceratedwt ~ individuals$diet, xlab = "Diet", ylab = "Eviscerated Weight (g)", main = "Average Fish Eviscerated Weights Across Diets", las = 1, par(cex.axis=0.70))
+#8. Hepatosomatic Index
+tiff("Hepatosomatic Index.tiff", width = 5, height = 4, units = 'in', res = 300)
+boxplot(individuals$hsi ~ individuals$diet, xlab = "Diet", ylab = "HSI (g/mm)*100", main = "Average Fish Heposomatic Index Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+dev.off()
 
-boxplot(individuals$conditionfactor ~ individuals$diet, xlab = "Diet", ylab = "Condition Factor (g/cm^3)", main = "Average Fish Condition Factor Across Diets", las = 1, par(cex.axis=0.70))
+#9. Average Fish Total Weight - Eviscerated Weight
+tiff("Weight Diff.tiff", width = 5, height = 4, units = 'in', res = 300)
+boxplot(individuals$wtdiff ~ individuals$diet, xlab = "Diet", ylab = "Weight Difference (g)", main = "Average Fish Total Weight - Eviscerated Weight", ylim = c(0,20), las = 1,par(cex.axis=0.70)) # Make plot
+dev.off()
 
-boxplot(individuals$hsi ~ individuals$diet, xlab = "Diet", ylab = "HSI", main = "Average Fish Heposomatic Index Across Diets", las = 1, par(cex.axis=0.70))
+#10. FCR Dry:Wet Biomass
+tiff("FCR Dry.tiff", width = 5, height = 4, units = 'in', res = 300)
+boxplot(fcr$`wet fcr ave.` ~ fcr$diet, xlab = "Diet", ylab = "wet:wet FCR", main = "FCR of wet feed:wet biomass accross diets", ylim = c(0,8), las = 1, par(cex.axis=0.70)) # Make plot
+dev.off()
 
-boxplot(individuals$wtdiff ~ individuals$diet, xlab = "Diet", ylab = "Weight Difference (g)", main = "Average Fish Total Weight - Eviscerated Weight", ylim = c(0,20), las = 1, par(cex.axis=0.70))
-
-
-#3. Plot data from all fish taken during dissection and for drying (n = 19 per diet)
-boxplot(allfish$wt ~ allfish$diet, xlab = "Diet", ylab = "Average Fish Weight (g)", main = "Average Fish Weight Across Diets", ylim = c(0,250), las = 1, par(cex.axis=0.70))
-
-boxplot(allfish$tlmm ~ allfish$diet, xlab = "Diet", ylab = "Average Total Length (mm)", main = "Average Fish Total Length Across Diets", ylim = c(0,300), las = 1, par(cex.axis=0.70))
-
-
-#4. Plot FCR data for each diet (n = 3 tanks per diet)
-boxplot(fcr$`wet fcr ave.` ~ fcr$diet, xlab = "Diet", ylab = "wet:wet FCR", main = "FCR of wet feed:wet biomass accross diets", ylim = c(0,8), las = 1, par(cex.axis=0.70))
-
-boxplot(fcr$`dry fcr ave.` ~ fcr$diet, xlab = "Diet", ylab = "dry:wet FCR", main = "FCR of dry feed:wet biomass accross diets", ylim = c(0,2), las = 1, par(cex.axis=0.70))
+#11. FCR Wet:Wet Biomass
+tiff("FCR Wet.tiff", width = 5, height = 4, units = 'in', res = 300)
+boxplot(fcr$`dry fcr ave.` ~ fcr$diet, xlab = "Diet", ylab = "dry:wet FCR", main = "FCR of dry feed:wet biomass accross diets", ylim = c(0,2), las = 1, par(cex.axis=0.70)) # Make plot
+dev.off()
 ```
 
 

@@ -54,6 +54,7 @@ lm004 <- lm(individuals$liverwt ~ individuals$wt) # Make plot
 dev.off()
 
 
+
 # Boxplots showing differences in diet treatments given a parameter
 
 #1. Average Fish Weight
