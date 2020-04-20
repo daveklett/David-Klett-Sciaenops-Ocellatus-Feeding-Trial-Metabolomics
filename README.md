@@ -9,3 +9,5 @@ Datasets used in this project can be foung in the data directory, figures produc
 A summary explanation of each dataset and what they read can be found in the data folder in the metadata.txt file.
 
 This project statistically analyses the important and significant data from my research, while setting up coe for my future data that has yet to be collected.
+
+I would like to aknowledge my advisor Dr. Aaron Watson (SCDNR), my committee members Dr. Fabio Casu, Dr. Jody Beers, and Dr. Mike Janech for their guidance and support so far in developing and executing my thesis project. I would like to thank the Slocum Lunz Grant and the SCDNR for their funding and the faculty at the Graduate Program in Marine Biology for their help and guidance. Last I want to thank my fiance Jolie, and my family and God for their encouragement and consistant help to push me forward in my graduate studies.
