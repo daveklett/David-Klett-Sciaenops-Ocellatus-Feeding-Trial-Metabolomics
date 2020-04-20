@@ -22,12 +22,16 @@ fcr <- fcr_data
 fcr$diet <- as.factor(fcr$diet)
 fcr$diet = factor(fcr$diet,c("FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL"))
 
-#Plot significant data to put into presentation and Thesis
+#Plot significant data to put into presentation and Thesis; tiff files so they are in much better resolution
 
+tiff("wt~tlmm.tiff", width = 6, height = 4, units = 'in', res = 300)
 plot(individuals$wt ~ individuals$tlmm, xlab = "Individual Total Length (mm)", ylab = "Individual Weight (g)", main = "Individual Weight vs Length Relationship", pch = 16, las = 1)
 lm01 <- lm(individuals$wt ~ individuals$tlmm)
 abline(lm01, col = "blue")
 summary(lm01)
+lm001 <- lm(individuals$wt ~ individuals$tlmm) # Make plot
+dev.off()
+
 
 #log transform data for length weight relationship
 plot(log(individuals$wt) ~ log(individuals$tlmm), xlab = "log(Individual Total Length (mm))", ylab = "log(Individual Weight (g)", main = "Individual Weight vs Length Relationship", pch = 16, las = 1)
