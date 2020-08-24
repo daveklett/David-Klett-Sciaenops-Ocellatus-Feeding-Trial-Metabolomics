@@ -1,0 +1,334 @@
+This script is meant to track changes in indices over time for each individual diet (does an index value change over time for a given diet?).
+```{r}
+new <- newanalysis_data
+new$diet <- as.factor(new$diet)
+new$diet = factor(new$diet,c("COND", "FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL"))
+new$sample <- as.factor(new$sample)
+new$sample = factor(new$sample,c("1", "2","3","4","5"))
+
+
+#HSI linear model and ANOVA between weeks for Diet 1 FSHSQ
+#FSHSQ
+lmhsiFSHSQ <- lm(new$hsi[new$diet == "FSHSQ"] ~ new$sample[new$diet == "FSHSQ"], data = newanalysis_data)
+summary(lmhsiFSHSQ)
+aovhsiFSHSQ <- aov(new$hsi[new$diet == "FSHSQ"] ~ new$sample[new$diet == "FSHSQ"], data = newanalysis_data)
+summary(aovhsiFSHSQ)
+aovhsiFSHSQ
+posthocFSHSQ <- TukeyHSD(x=aovhsiFSHSQ, 'new$sample[new$diet == "FSHSQ"]', conf.level=0.99)
+posthocFSHSQ
+
+#Condition Factor linear model and ANOVA between weeks for Diet 1 FSHSQ
+#FSHSQ
+lmcfFSHSQ <- lm(new$conditionfactor[new$diet == "FSHSQ"] ~ new$sample[new$diet == "FSHSQ"], data = newanalysis_data)
+summary(lmcfFSHSQ)
+aovcfFSHSQ <- aov(new$conditionfactor[new$diet == "FSHSQ"] ~ new$sample[new$diet == "FSHSQ"], data = newanalysis_data)
+summary(aovcfFSHSQ)
+aovcfFSHSQ
+posthoccfFSHSQ <- TukeyHSD(x=aovcfFSHSQ, 'new$sample[new$diet == "FSHSQ"]', conf.level=0.99)
+posthoccfFSHSQ
+
+
+#% Viscera linear model and ANOVA between weeks for Diet 1 FSHSQ
+#FSHSQ
+lmpvFSHSQ <- lm(new$percentviscera[new$diet == "FSHSQ"] ~ new$sample[new$diet == "FSHSQ"], data = newanalysis_data)
+summary(lmpvFSHSQ)
+aovpvFSHSQ <- aov(new$percentviscera[new$diet == "FSHSQ"] ~ new$sample[new$diet == "FSHSQ"], data = newanalysis_data)
+summary(aovpvFSHSQ)
+aovpvFSHSQ
+posthocpvFSHSQ <- TukeyHSD(x=aovpvFSHSQ, 'new$sample[new$diet == "FSHSQ"]', conf.level=0.99)
+posthocpvFSHSQ
+
+
+
+
+
+
+
+
+
+#HSI linear model and ANOVA between weeks for Diet 2 FSH
+#FSH
+lmhsiFSH <- lm(new$hsi[new$diet == "FSH"] ~ new$sample[new$diet == "FSH"], data = newanalysis_data)
+summary(lmhsiFSH)
+aovhsiFSH <- aov(new$hsi[new$diet == "FSH"] ~ new$sample[new$diet == "FSH"], data = newanalysis_data)
+summary(aovhsiFSH)
+aovhsiFSH
+posthocFSH <- TukeyHSD(x=aovhsiFSH, 'new$sample[new$diet == "FSH"]', conf.level=0.99)
+posthocFSH
+
+#Condition Factor linear model and ANOVA between weeks for Diet 2 FSH
+#FSH
+lmcfFSH <- lm(new$conditionfactor[new$diet == "FSH"] ~ new$sample[new$diet == "FSH"], data = newanalysis_data)
+summary(lmcfFSH)
+aovcfFSH <- aov(new$conditionfactor[new$diet == "FSH"] ~ new$sample[new$diet == "FSH"], data = newanalysis_data)
+summary(aovcfFSH)
+aovcfFSH
+posthoccfFSH <- TukeyHSD(x=aovcfFSH, 'new$sample[new$diet == "FSH"]', conf.level=0.99)
+posthoccfFSH
+
+
+#% Viscera linear model and ANOVA between weeks for Diet 2 FSH
+#FSH
+lmpvFSH <- lm(new$percentviscera[new$diet == "FSH"] ~ new$sample[new$diet == "FSH"], data = newanalysis_data)
+summary(lmpvFSH)
+aovpvFSH <- aov(new$percentviscera[new$diet == "FSH"] ~ new$sample[new$diet == "FSH"], data = newanalysis_data)
+summary(aovpvFSH)
+aovpvFSH
+posthocpvFSH <- TukeyHSD(x=aovpvFSH, 'new$sample[new$diet == "FSH"]', conf.level=0.99)
+posthocpvFSH
+
+
+
+
+
+
+
+
+
+#HSI linear model and ANOVA between weeks for Diet 3 FSQ
+#FSQ
+lmhsiFSQ <- lm(new$hsi[new$diet == "FSQ"] ~ new$sample[new$diet == "FSQ"], data = newanalysis_data)
+summary(lmhsiFSQ)
+aovhsiFSQ <- aov(new$hsi[new$diet == "FSQ"] ~ new$sample[new$diet == "FSQ"], data = newanalysis_data)
+summary(aovhsiFSQ)
+aovhsiFSQ
+posthocFSQ <- TukeyHSD(x=aovhsiFSQ, 'new$sample[new$diet == "FSQ"]', conf.level=0.99)
+posthocFSQ
+
+#Condition Factor linear model and ANOVA between weeks for Diet 3 FSQ
+#FSQ
+lmcfFSQ <- lm(new$conditionfactor[new$diet == "FSQ"] ~ new$sample[new$diet == "FSQ"], data = newanalysis_data)
+summary(lmcfFSQ)
+aovcfFSQ <- aov(new$conditionfactor[new$diet == "FSQ"] ~ new$sample[new$diet == "FSQ"], data = newanalysis_data)
+summary(aovcfFSQ)
+aovcfFSQ
+posthoccfFSQ <- TukeyHSD(x=aovcfFSQ, 'new$sample[new$diet == "FSQ"]', conf.level=0.99)
+posthoccfFSQ
+
+
+#% Viscera linear model and ANOVA between weeks for Diet 3 FSQ
+#FSQ
+lmpvFSQ <- lm(new$percentviscera[new$diet == "FSQ"] ~ new$sample[new$diet == "FSQ"], data = newanalysis_data)
+summary(lmpvFSQ)
+aovpvFSQ <- aov(new$percentviscera[new$diet == "FSQ"] ~ new$sample[new$diet == "FSQ"], data = newanalysis_data)
+summary(aovpvFSQ)
+aovpvFSQ
+posthocpvFSQ <- TukeyHSD(x=aovpvFSQ, 'new$sample[new$diet == "FSQ"]', conf.level=0.99)
+posthocpvFSQ
+
+
+
+
+
+
+
+
+#HSI linear model and ANOVA between weeks for Diet 4 SHSQ
+#SHSQ
+lmhsiSHSQ <- lm(new$hsi[new$diet == "SHSQ"] ~ new$sample[new$diet == "SHSQ"], data = newanalysis_data)
+summary(lmhsiSHSQ)
+aovhsiSHSQ <- aov(new$hsi[new$diet == "SHSQ"] ~ new$sample[new$diet == "SHSQ"], data = newanalysis_data)
+summary(aovhsiSHSQ)
+aovhsiSHSQ
+posthocSHSQ <- TukeyHSD(x=aovhsiSHSQ, 'new$sample[new$diet == "SHSQ"]', conf.level=0.99)
+posthocSHSQ
+
+#Condition Factor linear model and ANOVA between weeks for Diet 4 SHSQ
+#SHSQ
+lmcfSHSQ <- lm(new$conditionfactor[new$diet == "SHSQ"] ~ new$sample[new$diet == "SHSQ"], data = newanalysis_data)
+summary(lmcfSHSQ)
+aovcfSHSQ <- aov(new$conditionfactor[new$diet == "SHSQ"] ~ new$sample[new$diet == "SHSQ"], data = newanalysis_data)
+summary(aovcfSHSQ)
+aovcfSHSQ
+posthoccfSHSQ <- TukeyHSD(x=aovcfSHSQ, 'new$sample[new$diet == "SHSQ"]', conf.level=0.99)
+posthoccfSHSQ
+
+
+#% Viscera linear model and ANOVA between weeks for Diet 4 SHSQ
+#SHSQ
+lmpvSHSQ <- lm(new$percentviscera[new$diet == "SHSQ"] ~ new$sample[new$diet == "SHSQ"], data = newanalysis_data)
+summary(lmpvSHSQ)
+aovpvSHSQ <- aov(new$percentviscera[new$diet == "SHSQ"] ~ new$sample[new$diet == "SHSQ"], data = newanalysis_data)
+summary(aovpvSHSQ)
+aovpvSHSQ
+posthocpvSHSQ <- TukeyHSD(x=aovpvSHSQ, 'new$sample[new$diet == "SHSQ"]', conf.level=0.99)
+posthocpvSHSQ
+
+
+
+
+
+
+
+
+
+#HSI linear model and ANOVA between weeks for Diet 5 F
+#F
+lmhsiF <- lm(new$hsi[new$diet == "F"] ~ new$sample[new$diet == "F"], data = newanalysis_data)
+summary(lmhsiF)
+aovhsiF <- aov(new$hsi[new$diet == "F"] ~ new$sample[new$diet == "F"], data = newanalysis_data)
+summary(aovhsiF)
+aovhsiF
+posthocF <- TukeyHSD(x=aovhsiF, 'new$sample[new$diet == "F"]', conf.level=0.99)
+posthocF
+
+#Condition Factor linear model and ANOVA between weeks for Diet 5 F
+#F
+lmcfF <- lm(new$conditionfactor[new$diet == "F"] ~ new$sample[new$diet == "F"], data = newanalysis_data)
+summary(lmcfF)
+aovcfF <- aov(new$conditionfactor[new$diet == "F"] ~ new$sample[new$diet == "F"], data = newanalysis_data)
+summary(aovcfF)
+aovcfF
+posthoccfF <- TukeyHSD(x=aovcfF, 'new$sample[new$diet == "F"]', conf.level=0.99)
+posthoccfF
+
+
+#% Viscera linear model and ANOVA between weeks for Diet 5 F
+#F
+lmpvF <- lm(new$percentviscera[new$diet == "F"] ~ new$sample[new$diet == "F"], data = newanalysis_data)
+summary(lmpvF)
+aovpvF <- aov(new$percentviscera[new$diet == "F"] ~ new$sample[new$diet == "F"], data = newanalysis_data)
+summary(aovpvF)
+aovpvF
+posthocpvF <- TukeyHSD(x=aovpvF, 'new$sample[new$diet == "F"]', conf.level=0.99)
+posthocpvF
+
+
+
+
+
+
+
+
+
+#HSI linear model and ANOVA between weeks for Diet 6 SH
+#SH
+lmhsiSH <- lm(new$hsi[new$diet == "SH"] ~ new$sample[new$diet == "SH"], data = newanalysis_data)
+summary(lmhsiSH)
+aovhsiSH <- aov(new$hsi[new$diet == "SH"] ~ new$sample[new$diet == "SH"], data = newanalysis_data)
+summary(aovhsiSH)
+aovhsiSH
+posthocSH <- TukeyHSD(x=aovhsiSH, 'new$sample[new$diet == "SH"]', conf.level=0.99)
+posthocSH
+
+#Condition Factor linear model and ANOVA between weeks for Diet 6 SH
+#SH
+lmcfSH <- lm(new$conditionfactor[new$diet == "SH"] ~ new$sample[new$diet == "SH"], data = newanalysis_data)
+summary(lmcfSH)
+aovcfSH <- aov(new$conditionfactor[new$diet == "SH"] ~ new$sample[new$diet == "SH"], data = newanalysis_data)
+summary(aovcfSH)
+aovcfSH
+posthoccfSH <- TukeyHSD(x=aovcfSH, 'new$sample[new$diet == "SH"]', conf.level=0.99)
+posthoccfSH
+
+
+#% Viscera linear model and ANOVA between weeks for Diet 6 SH
+#SH
+lmpvSH <- lm(new$percentviscera[new$diet == "SH"] ~ new$sample[new$diet == "SH"], data = newanalysis_data)
+summary(lmpvSH)
+aovpvSH <- aov(new$percentviscera[new$diet == "SH"] ~ new$sample[new$diet == "SH"], data = newanalysis_data)
+summary(aovpvSH)
+aovpvSH
+posthocpvSH <- TukeyHSD(x=aovpvSH, 'new$sample[new$diet == "SH"]', conf.level=0.99)
+posthocpvSH
+
+
+
+
+
+
+
+
+
+#HSI linear model and ANOVA between weeks for Diet 7 SQ
+#SQ
+lmhsiSQ <- lm(new$hsi[new$diet == "SQ"] ~ new$sample[new$diet == "SQ"], data = newanalysis_data)
+summary(lmhsiSQ)
+aovhsiSQ <- aov(new$hsi[new$diet == "SQ"] ~ new$sample[new$diet == "SQ"], data = newanalysis_data)
+summary(aovhsiSQ)
+aovhsiSQ
+posthocSQ <- TukeyHSD(x=aovhsiSQ, 'new$sample[new$diet == "SQ"]', conf.level=0.99)
+posthocSQ
+
+#Condition Factor linear model and ANOVA between weeks for Diet 7 SQ
+#SQ
+lmcfSQ <- lm(new$conditionfactor[new$diet == "SQ"] ~ new$sample[new$diet == "SQ"], data = newanalysis_data)
+summary(lmcfSQ)
+aovcfSQ <- aov(new$conditionfactor[new$diet == "SQ"] ~ new$sample[new$diet == "SQ"], data = newanalysis_data)
+summary(aovcfSQ)
+aovcfSQ
+posthoccfSQ <- TukeyHSD(x=aovcfSQ, 'new$sample[new$diet == "SQ"]', conf.level=0.99)
+posthoccfSQ
+
+
+#% Viscera linear model and ANOVA between weeks for Diet 7 SQ
+#SQ
+lmpvSQ <- lm(new$percentviscera[new$diet == "SQ"] ~ new$sample[new$diet == "SQ"], data = newanalysis_data)
+summary(lmpvSQ)
+aovpvSQ <- aov(new$percentviscera[new$diet == "SQ"] ~ new$sample[new$diet == "SQ"], data = newanalysis_data)
+summary(aovpvSQ)
+aovpvSQ
+posthocpvSQ <- TukeyHSD(x=aovpvSQ, 'new$sample[new$diet == "SQ"]', conf.level=0.99)
+posthocpvSQ
+
+
+
+
+
+
+
+
+
+#HSI linear model and ANOVA between weeks for Diet 8 PELL
+#PELL
+lmhsiPELL <- lm(new$hsi[new$diet == "PELL"] ~ new$sample[new$diet == "PELL"], data = newanalysis_data)
+summary(lmhsiPELL)
+aovhsiPELL <- aov(new$hsi[new$diet == "PELL"] ~ new$sample[new$diet == "PELL"], data = newanalysis_data)
+summary(aovhsiPELL)
+aovhsiPELL
+posthocPELL <- TukeyHSD(x=aovhsiPELL, 'new$sample[new$diet == "PELL"]', conf.level=0.99)
+posthocPELL
+
+#Condition Factor linear model and ANOVA between weeks for Diet 8 PELL
+#PELL
+lmcfPELL <- lm(new$conditionfactor[new$diet == "PELL"] ~ new$sample[new$diet == "PELL"], data = newanalysis_data)
+summary(lmcfPELL)
+aovcfPELL <- aov(new$conditionfactor[new$diet == "PELL"] ~ new$sample[new$diet == "PELL"], data = newanalysis_data)
+summary(aovcfPELL)
+aovcfPELL
+posthoccfPELL <- TukeyHSD(x=aovcfPELL, 'new$sample[new$diet == "PELL"]', conf.level=0.99)
+posthoccfPELL
+
+
+#% Viscera linear model and ANOVA between weeks for Diet 8 PELL
+#PELL
+lmpvPELL <- lm(new$percentviscera[new$diet == "PELL"] ~ new$sample[new$diet == "PELL"], data = newanalysis_data)
+summary(lmpvPELL)
+aovpvPELL <- aov(new$percentviscera[new$diet == "PELL"] ~ new$sample[new$diet == "PELL"], data = newanalysis_data)
+summary(aovpvPELL)
+aovpvPELL
+posthocpvPELL <- TukeyHSD(x=aovpvPELL, 'new$sample[new$diet == "PELL"]', conf.level=0.99)
+posthocpvPELL
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

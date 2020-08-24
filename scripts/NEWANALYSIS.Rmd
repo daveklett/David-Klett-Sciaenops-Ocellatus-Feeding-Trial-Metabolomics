@@ -1,0 +1,143 @@
+
+This script is meant to determine differences in HSI, CF, TL, and % Viscera at each sampling. Help show how differences are formed over time.
+```{r}
+new <- newanalysis_data
+new$diet <- as.factor(new$diet)
+new$diet = factor(new$diet,c("COND", "FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL"))
+
+#HSI linear model and ANOVA between diets at weeks 3, 6, and 9
+#3
+lmhsi33 <- lm(new$hsi[new$sample == 2] ~ new$diet[new$sample == 2], data = newanalysis_data)
+summary(lmhsi33)
+aovhsi33 <- aov(new$hsi[new$sample == 2] ~ new$diet[new$sample == 2], data = newanalysis_data)
+summary(aovhsi33)
+aovhsi33
+posthoc33 <- TukeyHSD(x=aovhsi33, 'new$diet[new$sample == 2]', conf.level=0.99)
+posthoc33
+
+#6
+lmhsi66 <- lm(new$hsi[new$sample == 3] ~ new$diet[new$sample == 3], data = newanalysis_data)
+summary(lmhsi66)
+aovhsi66 <- aov(new$hsi[new$sample == 3] ~ new$diet[new$sample == 3], data = newanalysis_data)
+summary(aovhsi66)
+aovhsi66
+posthoc66 <- TukeyHSD(x=aovhsi66, 'new$diet[new$sample == 3]', conf.level=0.99)
+posthoc66
+
+#9
+lmhsi99 <- lm(new$hsi[new$sample == 4] ~ new$diet[new$sample == 4], data = newanalysis_data)
+summary(lmhsi99)
+aovhsi99 <- aov(new$hsi[new$sample == 4] ~ new$diet[new$sample == 4], data = newanalysis_data)
+summary(aovhsi99)
+aovhsi99
+posthoc99 <- TukeyHSD(x=aovhsi99, 'new$diet[new$sample == 4]', conf.level=0.99)
+posthoc99
+
+
+#CF linear model and ANOVA between diets at weeks 3, 6, and 9
+#3
+lmcf33 <- lm(new$conditionfactor[new$sample == 2] ~ new$diet[new$sample == 2], data = newanalysis_data)
+summary(lmcf33)
+aovcf33 <- aov(new$conditionfactor[new$sample == 2] ~ new$diet[new$sample == 2], data = newanalysis_data)
+summary(aovcf33)
+aovcf33
+posthoccf33 <- TukeyHSD(x=aovcf33, 'new$diet[new$sample == 2]', conf.level=0.99)
+posthoccf33
+
+#6
+lmcf66 <- lm(new$conditionfactor[new$sample == 3] ~ new$diet[new$sample == 3], data = newanalysis_data)
+summary(lmcf66)
+aovcf66 <- aov(new$conditionfactor[new$sample == 3] ~ new$diet[new$sample == 3], data = newanalysis_data)
+summary(aovcf66)
+aovcf66
+posthoccf66 <- TukeyHSD(x=aovcf66, 'new$diet[new$sample == 3]', conf.level=0.99)
+posthoccf66
+
+#9
+lmcf99 <- lm(new$conditionfactor[new$sample == 4] ~ new$diet[new$sample == 4], data = newanalysis_data)
+summary(lmcf99)
+aovcf99 <- aov(new$conditionfactor[new$sample == 4] ~ new$diet[new$sample == 4], data = newanalysis_data)
+summary(aovcf99)
+aovcf99
+posthoccf99 <- TukeyHSD(x=aovcf99, 'new$diet[new$sample == 4]', conf.level=0.99)
+posthoccf99
+
+
+
+#% Viscera linear model and ANOVA between diets at weeks 3, 6, and 9
+#3
+lmpv33 <- lm(new$percentviscera[new$sample == 2] ~ new$diet[new$sample == 2], data = newanalysis_data)
+summary(lmpv33)
+aovpv33 <- aov(new$percentviscera[new$sample == 2] ~ new$diet[new$sample == 2], data = newanalysis_data)
+summary(aovpv33)
+aovpv33
+posthocpv33 <- TukeyHSD(x=aovpv33, 'new$diet[new$sample == 2]', conf.level=0.99)
+posthocpv33
+
+#6
+lmpv66 <- lm(new$percentviscera[new$sample == 3] ~ new$diet[new$sample == 3], data = newanalysis_data)
+summary(lmpv66)
+aovpv66 <- aov(new$percentviscera[new$sample == 3] ~ new$diet[new$sample == 3], data = newanalysis_data)
+summary(aovpv66)
+aovpv66
+posthocpv66 <- TukeyHSD(x=aovpv66, 'new$diet[new$sample == 3]', conf.level=0.99)
+posthocpv66
+
+#9
+lmpv99 <- lm(new$percentviscera[new$sample == 4] ~ new$diet[new$sample == 4], data = newanalysis_data)
+summary(lmpv99)
+aovpv99 <- aov(new$percentviscera[new$sample == 4] ~ new$diet[new$sample == 4], data = newanalysis_data)
+summary(aovpv99)
+aovpv99
+posthocpv99 <- TukeyHSD(x=aovpv99, 'new$diet[new$sample == 4]', conf.level=0.99)
+posthocpv99
+
+
+
+#TL linear model and ANOVA between diets at weeks 3, 6, and 9
+#3
+lmtl33 <- lm(new$tlmm[new$sample == 2] ~ new$diet[new$sample == 2], data = newanalysis_data)
+summary(lmtl33)
+aovtl33 <- aov(new$tlmm[new$sample == 2] ~ new$diet[new$sample == 2], data = newanalysis_data)
+summary(aovtl33)
+aovtl33
+posthoctl33 <- TukeyHSD(x=aovtl33, 'new$diet[new$sample == 2]', conf.level=0.99)
+posthoctl33
+
+#6
+lmtl66 <- lm(new$tlmm[new$sample == 3] ~ new$diet[new$sample == 3], data = newanalysis_data)
+summary(lmtl66)
+aovtl66 <- aov(new$tlmm[new$sample == 3] ~ new$diet[new$sample == 3], data = newanalysis_data)
+summary(aovtl66)
+aovtl66
+posthoctl66 <- TukeyHSD(x=aovtl66, 'new$diet[new$sample == 3]', conf.level=0.99)
+posthoctl66
+
+#9
+lmtl99 <- lm(new$tlmm[new$sample == 4] ~ new$diet[new$sample == 4], data = newanalysis_data)
+summary(lmtl99)
+aovtl99 <- aov(new$tlmm[new$sample == 4] ~ new$diet[new$sample == 4], data = newanalysis_data)
+summary(aovtl99)
+aovtl99
+posthoctl99 <- TukeyHSD(x=aovtl99, 'new$diet[new$sample == 4]', conf.level=0.99)
+posthoctl99
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
