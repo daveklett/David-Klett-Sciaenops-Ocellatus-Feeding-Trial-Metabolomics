@@ -1,0 +1,163 @@
+
+
+```{r}
+#This is an ANOVA statistical test to determine if any differences between diets exist for the calcualations listed
+
+lit <- literatureanalyses_data
+lit$diet <- as.factor(lit$diet)
+lit$diet = factor(lit$diet,c("FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL"))
+
+#Protein Intake linear model; models hepatasomatic index of diets and compares to see if there are differences
+lmpi <- lm(lit$`protein intake` ~ lit$`diet`, data = lit)
+summary(lmpi)
+aovpi <- aov(lit$`protein intake` ~ lit$diet, data =lit)
+summary(aovpi)
+aovpi
+posthocpi <- TukeyHSD(x=aovpi, 'lit$diet', conf.level=0.99)
+posthocpi
+
+#Protein Efficiency linear model; models hepatasomatic index of diets and compares to see if there are differences
+lmpe <- lm(lit$`protein efficeincy` ~ lit$`diet`, data = lit)
+summary(lmpe)
+aovpe <- aov(lit$`protein efficeincy` ~ lit$diet, data =lit)
+summary(aovpe)
+aovpe
+posthocpe <- TukeyHSD(x=aovpe, 'lit$diet', conf.level=0.99)
+posthocpe
+
+#Dry Matter Ratio model; models hepatasomatic index of diets and compares to see if there are differences
+lmdmr <- lm(lit$`dry matter ratio` ~ lit$`diet`, data = lit)
+summary(lmdmr)
+aovdmr <- aov(lit$`dry matter ratio` ~ lit$diet, data =lit)
+summary(aovdmr)
+aovdmr
+posthocdmr <- TukeyHSD(x=aovdmr, 'lit$diet', conf.level=0.99)
+posthocdmr
+
+#Feed Intake model; models hepatasomatic index of diets and compares to see if there are differences
+lmfi <- lm(lit$`feed intake` ~ lit$`diet`, data = lit)
+summary(lmfi)
+aovfi <- aov(lit$`feed intake` ~ lit$diet, data =lit)
+summary(aovfi)
+aovfi
+posthocfi <- TukeyHSD(x=aovfi, 'lit$diet', conf.level=0.99)
+posthocfi
+
+
+
+
+
+
+
+
+
+
+
+
+#Protein Intake linear model; models hepatasomatic index of diets and compares to see if there are differences
+lmpe <- lm(lit$`protein efficeincy` ~ lit$`diet`, data = lit)
+summary(lmpe)
+aovpe <- aov(lit$`protein efficeincy` ~ lit$diet, data =lit)
+summary(aovpe)
+aovpe
+posthocpe <- TukeyHSD(x=aovpe, 'lit$diet', conf.level=0.99)
+posthocpe
+
+#Protein Intake linear model; models hepatasomatic index of diets and compares to see if there are differences
+lmpe <- lm(lit$`protein efficeincy` ~ lit$`diet`, data = lit)
+summary(lmpe)
+aovpe <- aov(lit$`protein efficeincy` ~ lit$diet, data =lit)
+summary(aovpe)
+aovpe
+posthocpe <- TukeyHSD(x=aovpe, 'lit$diet', conf.level=0.99)
+posthocpe
+
+#Protein Intake linear model; models hepatasomatic index of diets and compares to see if there are differences
+lmpe <- lm(lit$`protein efficeincy` ~ lit$`diet`, data = lit)
+summary(lmpe)
+aovpe <- aov(lit$`protein efficeincy` ~ lit$diet, data =lit)
+summary(aovpe)
+aovpe
+posthocpe <- TukeyHSD(x=aovpe, 'lit$diet', conf.level=0.99)
+posthocpe
+
+#Protein Intake linear model; models hepatasomatic index of diets and compares to see if there are differences
+lmpe <- lm(lit$`protein efficeincy` ~ lit$`diet`, data = lit)
+summary(lmpe)
+aovpe <- aov(lit$`protein efficeincy` ~ lit$diet, data =lit)
+summary(aovpe)
+aovpe
+posthocpe <- TukeyHSD(x=aovpe, 'lit$diet', conf.level=0.99)
+posthocpe
+
+#Protein Intake linear model; models hepatasomatic index of diets and compares to see if there are differences
+lmpe <- lm(lit$`protein efficeincy` ~ lit$`diet`, data = lit)
+summary(lmpe)
+aovpe <- aov(lit$`protein efficeincy` ~ lit$diet, data =lit)
+summary(aovpe)
+aovpe
+posthocpe <- TukeyHSD(x=aovpe, 'lit$diet', conf.level=0.99)
+posthocpe
+
+
+```
+
+Box Plots of these new analyses
+```{r}
+#1. Protein Intake
+tiff("Protein Intake.tiff", width = 5, height = 4, units = 'in', res = 300)
+boxplot(lit$`protein intake` ~ lit$diet, xlab = "Diet", ylab = "Protein Intake (Dry Grams)", main = "Average Protein Intake Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+dev.off()
+
+#1. Protein Efficiency
+tiff("Protein Efficiency.tiff", width = 5, height = 4, units = 'in', res = 300)
+boxplot(lit$`protein efficeincy` ~ lit$diet, xlab = "Diet", ylab = "Protein Efficiency (Dry Weight Gain (g) / Dry Protein Fed (g)", main = "Average Protein Efficiency Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+dev.off()
+
+#1. Dry Matter Ratio
+tiff("Dry Matter Ratio.tiff", width = 5, height = 4, units = 'in', res = 300)
+boxplot(lit$`dry matter ratio` ~ lit$diet, xlab = "Diet", ylab = "Dry Matter Ratio (Dry Feed Fed (g) / Dry Biomass Gained (g)", main = "Average Dry Matter Ratio Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+dev.off()
+
+#1. Feed Intake
+tiff("Feed Intake.tiff", width = 5, height = 4, units = 'in', res = 300)
+boxplot(lit$`feed intake` ~ lit$diet, xlab = "Diet", ylab = "Feed Intake (% Body Weight / Day)", main = "Average Feed Intake Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+dev.off()
+
+
+
+
+
+
+
+
+
+
+
+
+#1. Protein Intake
+tiff("Protein Intake.tiff", width = 5, height = 4, units = 'in', res = 300)
+boxplot(lit$`protein intake` ~ lit$diet, xlab = "Diet", ylab = "Protein Intake (Dry Grams)", main = "Average Protein Intake Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+dev.off()
+
+#1. Protein Intake
+tiff("Protein Intake.tiff", width = 5, height = 4, units = 'in', res = 300)
+boxplot(lit$`protein intake` ~ lit$diet, xlab = "Diet", ylab = "Protein Intake (Dry Grams)", main = "Average Protein Intake Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+dev.off()
+
+#1. Protein Intake
+tiff("Protein Intake.tiff", width = 5, height = 4, units = 'in', res = 300)
+boxplot(lit$`protein intake` ~ lit$diet, xlab = "Diet", ylab = "Protein Intake (Dry Grams)", main = "Average Protein Intake Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+dev.off()
+
+#1. Protein Intake
+tiff("Protein Intake.tiff", width = 5, height = 4, units = 'in', res = 300)
+boxplot(lit$`protein intake` ~ lit$diet, xlab = "Diet", ylab = "Protein Intake (Dry Grams)", main = "Average Protein Intake Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+dev.off()
+
+#1. Protein Intake
+tiff("Protein Intake.tiff", width = 5, height = 4, units = 'in', res = 300)
+boxplot(lit$`protein intake` ~ lit$diet, xlab = "Diet", ylab = "Protein Intake (Dry Grams)", main = "Average Protein Intake Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+dev.off()
+```
+

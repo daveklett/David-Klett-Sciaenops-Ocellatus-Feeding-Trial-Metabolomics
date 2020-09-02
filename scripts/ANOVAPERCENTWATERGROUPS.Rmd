@@ -1,0 +1,24 @@
+```{r}
+dryfishweights <- read.csv(file = "./data/dryfishweights_data.csv", header = TRUE)
+dryfishweights$treatment <- as.factor(dryfishweights$treatment)
+dryfishweights$treatment = factor(dryfishweights$treatment,c("FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL", "initial"))
+
+lmhsi33 <- lm(new$hsi[new$sample == 2] ~ new$diet[new$sample == 2], data = newanalysis_data)
+summary(lmhsi33)
+aovhsi33 <- aov(new$hsi[new$sample == 2] ~ new$diet[new$sample == 2], data = newanalysis_data)
+summary(aovhsi33)
+aovhsi33
+posthoc33 <- TukeyHSD(x=aovhsi33, 'new$diet[new$sample == 2]', conf.level=0.99)
+posthoc33
+
+
+lmdry <- lm(dryfishweights$h2o ~ dryfishweights$treatment, data = dryfishweights_data)
+summary(lmdry)
+aovdry <- aov(dryfishweights$h2o ~ dryfishweights$treatment, data = dryfishweights_data)
+summary(aovdry)
+posthocdry <- TukeyHSD(x = aovdry, 'dryfishweights$treatment', conf.level = 0.99)
+posthocdry
+
+
+```
+
