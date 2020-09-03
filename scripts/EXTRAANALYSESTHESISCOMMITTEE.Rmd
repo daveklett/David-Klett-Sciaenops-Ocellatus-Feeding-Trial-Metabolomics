@@ -7,7 +7,7 @@ lit <- literatureanalyses_data
 lit$diet <- as.factor(lit$diet)
 lit$diet = factor(lit$diet,c("FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL"))
 
-#Protein Intake linear model; models hepatasomatic index of diets and compares to see if there are differences
+#Protein Intake per tank linear model; models hepatasomatic index of diets and compares to see if there are differences
 lmpi <- lm(lit$`protein intake` ~ lit$`diet`, data = lit)
 summary(lmpi)
 aovpi <- aov(lit$`protein intake` ~ lit$diet, data =lit)
@@ -16,10 +16,19 @@ aovpi
 posthocpi <- TukeyHSD(x=aovpi, 'lit$diet', conf.level=0.99)
 posthocpi
 
+#Protein Intake per fish linear model; models hepatasomatic index of diets and compares to see if there are differences
+lmpif <- lm(lit$`protein intake fish` ~ lit$`diet`, data = lit)
+summary(lmpif)
+aovpif <- aov(lit$`protein intake fish` ~ lit$diet, data =lit)
+summary(aovpif)
+aovpif
+posthocpif <- TukeyHSD(x=aovpif, 'lit$diet', conf.level=0.99)
+posthocpif
+
 #Protein Efficiency linear model; models hepatasomatic index of diets and compares to see if there are differences
-lmpe <- lm(lit$`protein efficeincy` ~ lit$`diet`, data = lit)
+lmpe <- lm(lit$`protein effeciency ratio` ~ lit$`diet`, data = lit)
 summary(lmpe)
-aovpe <- aov(lit$`protein efficeincy` ~ lit$diet, data =lit)
+aovpe <- aov(lit$`protein effeciency ratio` ~ lit$diet, data =lit)
 summary(aovpe)
 aovpe
 posthocpe <- TukeyHSD(x=aovpe, 'lit$diet', conf.level=0.99)
@@ -104,18 +113,23 @@ posthocpe
 
 Box Plots of these new analyses
 ```{r}
-#1. Protein Intake
-tiff("Protein Intake.tiff", width = 5, height = 4, units = 'in', res = 300)
-boxplot(lit$`protein intake` ~ lit$diet, xlab = "Diet", ylab = "Protein Intake (Dry Grams)", main = "Average Protein Intake Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+#1. Protein Intake per tank
+tiff("Protein Intake per tank.tiff", width = 5, height = 4, units = 'in', res = 300)
+boxplot(lit$`protein intake` ~ lit$diet, xlab = "Diet", ylab = "Protein Intake per Tank (Dry Grams)", main = "Average Protein Intake per Tank Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+dev.off()
+
+#1. Protein Intake per fish
+tiff("Protein Intake per fish.tiff", width = 5, height = 4, units = 'in', res = 300)
+boxplot(lit$`protein intake fish` ~ lit$diet, xlab = "Diet", ylab = "Protein Intake per Fish (Dry Grams)", main = "Average Protein Intake per Fish Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
 dev.off()
 
 #1. Protein Efficiency
-tiff("Protein Efficiency.tiff", width = 5, height = 4, units = 'in', res = 300)
-boxplot(lit$`protein efficeincy` ~ lit$diet, xlab = "Diet", ylab = "Protein Efficiency (Dry Weight Gain (g) / Dry Protein Fed (g)", main = "Average Protein Efficiency Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+tiff("Protein Efficiency.tiff", width = 6, height = 5, units = 'in', res = 300)
+boxplot(lit$`protein effeciency ratio` ~ lit$diet, xlab = "Diet", ylab = "Protein Efficiency (Dry Wt Gain (g) / Dry Protein Fed (g)", main = "Average Protein Efficiency Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
 dev.off()
 
 #1. Dry Matter Ratio
-tiff("Dry Matter Ratio.tiff", width = 5, height = 4, units = 'in', res = 300)
+tiff("Dry Matter Ratio.tiff", width = 6, height = 5, units = 'in', res = 300)
 boxplot(lit$`dry matter ratio` ~ lit$diet, xlab = "Diet", ylab = "Dry Matter Ratio (Dry Feed Fed (g) / Dry Biomass Gained (g)", main = "Average Dry Matter Ratio Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
 dev.off()
 
