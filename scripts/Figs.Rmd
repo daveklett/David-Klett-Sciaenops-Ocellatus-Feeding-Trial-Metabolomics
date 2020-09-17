@@ -59,12 +59,12 @@ dev.off()
 
 #1. Average Fish Weight
 tiff("Average Fish Weight.tiff", width = 5, height = 4, units = 'in', res = 300)
-boxplot(justinwt$weight ~ justinwt$diet, xlab = "Diet", ylab = "Average Fish Weight (g)", main = "Average Fish Weight Across Diets", ylim = c(0,200), las = 1,par(cex.axis=0.70)) # Make plot
+boxplot(justinwt$weight ~ justinwt$diet, xlab = "Diet", ylab = "Average Fish Weight (g)", main = "Fish Weight at Feeding Trial Conclusion", ylim = c(0,200), las = 1,par(cex.axis=0.70)) # Make plot
 dev.off()
 
 #2. Specific Growth Rate
 tiff("SGR.tiff", width = 5, height = 4, units = 'in', res = 300)
-boxplot(justinwt$sgr ~ justinwt$diet, xlab = "Diet", ylab = "SGR (%/day)", main = "Specific Growth Rate Across Diets", ylim = c(0,2.5), las = 1,par(cex.axis=0.70)) # Make plot
+boxplot(justinwt$sgr ~ justinwt$diet, xlab = "Diet", ylab = "SGR (% weight/day)", main = "Specific Growth Rate Over Feeding Trial", ylim = c(0,2.5), las = 1,par(cex.axis=0.70)) # Make plot
 dev.off()
 
 #3. Liver Weight
@@ -72,14 +72,14 @@ tiff("Liver Weight.tiff", width = 5, height = 4, units = 'in', res = 300)
 boxplot(individuals$liverwt ~ individuals$diet, xlab = "Diet", ylab = "Liver Weight (g)", main = "Average Fish Liver Weight Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
 dev.off()
 
-#4. Liver Weight
+#4. Percent Viscera
 tiff("Percent Viscera.tiff", width = 5, height = 4, units = 'in', res = 300)
-boxplot(individuals$percentviscera ~ individuals$diet, xlab = "Diet", ylab = "Percent Viscera (%)", main = "Average Fish Percent Viscera Across Diets", ylim = c(0,16), las = 1,par(cex.axis=0.70)) # Make plot
+boxplot(individuals$percentviscera ~ individuals$diet, xlab = "Diet", ylab = "Percent Viscera (%)", main = "Percent Viscera at Feeding Trial Conclusion", ylim = c(0,16), las = 1,par(cex.axis=0.70)) # Make plot
 dev.off()
 
 #5. Total Length
 tiff("Total Length.tiff", width = 5, height = 4, units = 'in', res = 300)
-boxplot(individuals$tlmm ~ individuals$diet, xlab = "Diet", ylab = "Total Length (mm)", main = "Average Fish Total Length Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+boxplot(individuals$tlmm ~ individuals$diet, xlab = "Diet", ylab = "Average Fish Total Length (mm)", main = "Total Length at Feeding Trial Conclusion", las = 1,par(cex.axis=0.70)) # Make plot
 dev.off()
 
 #6. Eviscerated Weight
@@ -89,12 +89,12 @@ dev.off()
 
 #7. Condition Factor
 tiff("Condition Factor.tiff", width = 5, height = 4, units = 'in', res = 300)
-boxplot(individuals$conditionfactor ~ individuals$diet, xlab = "Diet", ylab = "Condition Factor (g/cm^3)", main = "Average Fish Condition Factor Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+boxplot(individuals$conditionfactor ~ individuals$diet, xlab = "Diet", ylab = "Condition Factor (g/cm^3)", main = "Condition Factor at Feeding Trial Conclusion", las = 1,par(cex.axis=0.70)) # Make plot
 dev.off()
 
 #8. Hepatosomatic Index
 tiff("Hepatosomatic Index.tiff", width = 5, height = 4, units = 'in', res = 300)
-boxplot(individuals$hsi ~ individuals$diet, xlab = "Diet", ylab = "HSI (g/mm)*100", main = "Average Fish Heposomatic Index Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+boxplot(individuals$hsi ~ individuals$diet, xlab = "Diet", ylab = "HSI (g/mm)*100", main = "Hepatosomatic Index at Feeding Trial Conlcusion", las = 1,par(cex.axis=0.70)) # Make plot
 dev.off()
 
 #9. Average Fish Total Weight - Eviscerated Weight
@@ -104,11 +104,11 @@ dev.off()
 
 #10. FCR Dry:Wet Biomass
 tiff("FCR Dry.tiff", width = 5, height = 4, units = 'in', res = 300)
-boxplot(fcr$`wet fcr ave.` ~ fcr$diet, xlab = "Diet", ylab = "wet:wet FCR", main = "FCR of wet feed:wet biomass accross diets", ylim = c(0,8), las = 1, par(cex.axis=0.70)) # Make plot
+boxplot(fcr$`wet fcr ave.` ~ fcr$diet, xlab = "Diet", ylab = "FCR", main = "Feed Conversion Ratio Over Feeding Trial", ylim = c(0,8), las = 1, par(cex.axis=0.70)) # Make plot
 dev.off()
 
 #11. FCR Wet:Wet Biomass
 tiff("FCR Wet.tiff", width = 5, height = 4, units = 'in', res = 300)
-boxplot(fcr$`dry fcr ave.` ~ fcr$diet, xlab = "Diet", ylab = "dry:wet FCR", main = "FCR of dry feed:wet biomass accross diets", ylim = c(0,2), las = 1, par(cex.axis=0.70)) # Make plot
+boxplot(fcr$`dry fcr ave.` ~ fcr$diet, xlab = "Diet", ylab = "FCR", main = "Feed Conversion Ratio Over Feeding Trial", ylim = c(0,2), las = 1, par(cex.axis=0.70)) # Make plot
 dev.off()
 ```

@@ -120,12 +120,12 @@ dev.off()
 
 #1. Protein Intake per fish
 tiff("Protein Intake per fish.tiff", width = 5, height = 4, units = 'in', res = 300)
-boxplot(lit$`protein intake fish` ~ lit$diet, xlab = "Diet", ylab = "Protein Intake per Fish (Dry Grams)", main = "Average Protein Intake per Fish Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+boxplot(lit$`protein intake fish` ~ lit$diet, xlab = "Diet", ylab = "Protein Intake (Dry Grams Fed)", main = "Protein Intake Over Feeding Trial", las = 1,par(cex.axis=0.70)) # Make plot
 dev.off()
 
 #1. Protein Efficiency
 tiff("Protein Efficiency.tiff", width = 6, height = 5, units = 'in', res = 300)
-boxplot(lit$`protein effeciency ratio` ~ lit$diet, xlab = "Diet", ylab = "Protein Efficiency (Dry Wt Gain (g) / Dry Protein Fed (g)", main = "Average Protein Efficiency Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+boxplot(lit$`protein effeciency ratio` ~ lit$diet, xlab = "Diet", ylab = "Protein Efficiency (Dry Wt Gain / Dry Protein Fed)", main = "Protein Efficiency Over Feeding Trial", las = 1,par(cex.axis=0.70)) # Make plot
 dev.off()
 
 #1. Dry Matter Ratio
@@ -135,7 +135,7 @@ dev.off()
 
 #1. Feed Intake
 tiff("Feed Intake.tiff", width = 5, height = 4, units = 'in', res = 300)
-boxplot(lit$`feed intake` ~ lit$diet, xlab = "Diet", ylab = "Feed Intake (% Body Weight / Day)", main = "Average Feed Intake Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+boxplot(lit$`feed intake` ~ lit$diet, xlab = "Diet", ylab = "Feed Intake (% Body Weight / Day)", main = "Feed Intake Over Feeding Trial", las = 1,par(cex.axis=0.70)) # Make plot
 dev.off()
 
 
