@@ -1,0 +1,59 @@
+
+
+This is the analysis of the data received from Clemson. I will use ANOVAs to determine statistical differences between diets, and use post hoc testing to determine statistical groupings. 
+```{r}
+comp <- composition_data
+comp$treatment <- as.factor(comp$treatment)
+comp$treatment = factor(comp$treatment,c("COND","FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL"))
+
+
+#Percent Fat per diet linear model; models Percent Fat of diets and compares to see if there are differences
+lmfat <- lm(comp$`crude fat` ~ comp$treatment[comp$tissue == "wf"], data = comp)
+summary(lmfat)
+aovfat <- aov(comp$`crude fat` ~ comp$treatment, data =comp)
+summary(aovfat)
+aovfat
+posthocfat <- TukeyHSD(x=aovfat, 'comp$treatment', conf.level=0.99)
+posthocfat
+
+
+
+
+
+
+
+
+
+
+
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
