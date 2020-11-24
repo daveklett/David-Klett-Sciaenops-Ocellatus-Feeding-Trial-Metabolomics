@@ -52,6 +52,23 @@ aovfi
 posthocfi <- TukeyHSD(x=aovfi, 'lit$diet', conf.level=0.99)
 posthocfi
 
+#Protein Conversion Efficiency model; models hepatasomatic index of diets and compares to see if there are differences
+lmpce <- lm(lit$`protein conversion efficiency` ~ lit$`diet`, data = lit)
+summary(lmpce)
+aovpce <- aov(lit$`protein conversion efficiency` ~ lit$diet, data =lit)
+summary(aovpce)
+aovpce
+posthocpce <- TukeyHSD(x=aovpce, 'lit$diet', conf.level=0.99)
+posthocpce
+
+#Nitrogen Conversion Ratio model; models hepatasomatic index of diets and compares to see if there are differences
+lmncr <- lm(lit$`n conversion ratio` ~ lit$`diet`, data = lit)
+summary(lmncr)
+aovncr <- aov(lit$`n conversion ratio` ~ lit$diet, data =lit)
+summary(aovncr)
+aovncr
+posthocncr <- TukeyHSD(x=aovncr, 'lit$diet', conf.level=0.99)
+posthocncr
 
 
 
@@ -63,50 +80,6 @@ posthocfi
 
 
 
-#Protein Intake linear model; models hepatasomatic index of diets and compares to see if there are differences
-lmpe <- lm(lit$`protein efficeincy` ~ lit$`diet`, data = lit)
-summary(lmpe)
-aovpe <- aov(lit$`protein efficeincy` ~ lit$diet, data =lit)
-summary(aovpe)
-aovpe
-posthocpe <- TukeyHSD(x=aovpe, 'lit$diet', conf.level=0.99)
-posthocpe
-
-#Protein Intake linear model; models hepatasomatic index of diets and compares to see if there are differences
-lmpe <- lm(lit$`protein efficeincy` ~ lit$`diet`, data = lit)
-summary(lmpe)
-aovpe <- aov(lit$`protein efficeincy` ~ lit$diet, data =lit)
-summary(aovpe)
-aovpe
-posthocpe <- TukeyHSD(x=aovpe, 'lit$diet', conf.level=0.99)
-posthocpe
-
-#Protein Intake linear model; models hepatasomatic index of diets and compares to see if there are differences
-lmpe <- lm(lit$`protein efficeincy` ~ lit$`diet`, data = lit)
-summary(lmpe)
-aovpe <- aov(lit$`protein efficeincy` ~ lit$diet, data =lit)
-summary(aovpe)
-aovpe
-posthocpe <- TukeyHSD(x=aovpe, 'lit$diet', conf.level=0.99)
-posthocpe
-
-#Protein Intake linear model; models hepatasomatic index of diets and compares to see if there are differences
-lmpe <- lm(lit$`protein efficeincy` ~ lit$`diet`, data = lit)
-summary(lmpe)
-aovpe <- aov(lit$`protein efficeincy` ~ lit$diet, data =lit)
-summary(aovpe)
-aovpe
-posthocpe <- TukeyHSD(x=aovpe, 'lit$diet', conf.level=0.99)
-posthocpe
-
-#Protein Intake linear model; models hepatasomatic index of diets and compares to see if there are differences
-lmpe <- lm(lit$`protein efficeincy` ~ lit$`diet`, data = lit)
-summary(lmpe)
-aovpe <- aov(lit$`protein efficeincy` ~ lit$diet, data =lit)
-summary(aovpe)
-aovpe
-posthocpe <- TukeyHSD(x=aovpe, 'lit$diet', conf.level=0.99)
-posthocpe
 
 
 ```
@@ -138,40 +111,23 @@ tiff("Feed Intake.tiff", width = 5, height = 4, units = 'in', res = 300)
 boxplot(lit$`feed intake` ~ lit$diet, xlab = "Diet", ylab = "Feed Intake (% Body Weight / Day)", main = "Feed Intake Over Feeding Trial", las = 1,par(cex.axis=0.70)) # Make plot
 dev.off()
 
-
-
-
-
-
-
-
-
-
-
-
-#1. Protein Intake
-tiff("Protein Intake.tiff", width = 5, height = 4, units = 'in', res = 300)
-boxplot(lit$`protein intake` ~ lit$diet, xlab = "Diet", ylab = "Protein Intake (Dry Grams)", main = "Average Protein Intake Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+#1. Protein Conversion Efficiency
+tiff("Protein Conversion Efficiency.tiff", width = 5, height = 4, units = 'in', res = 300)
+boxplot(lit$`protein conversion efficiency` ~ lit$diet, xlab = "Diet", ylab = "Protein Conversion Efficiency (%)", main = "Protein Conversion Efficiency Over Feeding Trial", las = 1,par(cex.axis=0.70)) # Make plot
 dev.off()
 
-#1. Protein Intake
-tiff("Protein Intake.tiff", width = 5, height = 4, units = 'in', res = 300)
-boxplot(lit$`protein intake` ~ lit$diet, xlab = "Diet", ylab = "Protein Intake (Dry Grams)", main = "Average Protein Intake Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
+#1. Nitrogen Conversion Ratio
+tiff("Nitrogen Conversion Ratio.tiff", width = 5, height = 4, units = 'in', res = 300)
+boxplot(lit$`n conversion ratio` ~ lit$diet, xlab = "Diet", ylab = "Nitrogen Conversion Ratio (grams)", main = "Nitrogen Conversion Ratio Over Feeding Trial", las = 1,par(cex.axis=0.70)) # Make plot
 dev.off()
 
-#1. Protein Intake
-tiff("Protein Intake.tiff", width = 5, height = 4, units = 'in', res = 300)
-boxplot(lit$`protein intake` ~ lit$diet, xlab = "Diet", ylab = "Protein Intake (Dry Grams)", main = "Average Protein Intake Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
-dev.off()
 
-#1. Protein Intake
-tiff("Protein Intake.tiff", width = 5, height = 4, units = 'in', res = 300)
-boxplot(lit$`protein intake` ~ lit$diet, xlab = "Diet", ylab = "Protein Intake (Dry Grams)", main = "Average Protein Intake Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
-dev.off()
 
-#1. Protein Intake
-tiff("Protein Intake.tiff", width = 5, height = 4, units = 'in', res = 300)
-boxplot(lit$`protein intake` ~ lit$diet, xlab = "Diet", ylab = "Protein Intake (Dry Grams)", main = "Average Protein Intake Across Diets", las = 1,par(cex.axis=0.70)) # Make plot
-dev.off()
+
+
+
+
+
+
 ```
 
