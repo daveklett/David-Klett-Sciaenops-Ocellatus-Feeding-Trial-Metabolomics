@@ -6,19 +6,278 @@ comp <- composition_data
 comp$treatment <- as.factor(comp$treatment)
 comp$treatment = factor(comp$treatment,c("COND","FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL"))
 
+compf <- compf_data
+compf$treatment <- as.factor(compf$treatment)
+compf$treatment = factor(compf$treatment,c("COND","FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL"))
 
-#Percent Fat per diet linear model; models Percent Fat of diets and compares to see if there are differences
-lmfat <- lm(comp$`crude fat` ~ comp$treatment[comp$tissue == "wf"], data = comp)
-summary(lmfat)
-aovfat <- aov(comp$`crude fat` ~ comp$treatment, data =comp)
-summary(aovfat)
-aovfat
-posthocfat <- TukeyHSD(x=aovfat, 'comp$treatment', conf.level=0.99)
-posthocfat
+compwf <- compwf_data
+compwf$treatment <- as.factor(compwf$treatment)
+compwf$treatment = factor(compwf$treatment,c("COND","FSHSQ","FSH","FSQ","SHSQ","F","SH","SQ","PELL"))
 
 
 
+#WHOLE FISH
 
+#1. Percent Ash per treatment diet linear model; models percent ash of fish and compares to see if there are differences
+lmashwf <- lm(compwf$`ash` ~ compwf$`treatment`, data = compwf)
+summary(lmashwf)
+aovashwf <- aov(compwf$`ash` ~ compwf$treatment, data = compwf)
+summary(aovashwf)
+aovashwf
+posthocashwf <- TukeyHSD(x=aovashwf, 'compwf$treatment', conf.level=0.99)
+posthocashwf
+
+#2. Percent Total Nitrogen per treatment diet linear model; models percent total nitrogen of fish and compares to see if there are differences
+lmnitwf <- lm(compwf$`total nitrogen` ~ compwf$`treatment`, data = compwf)
+summary(lmnitwf)
+aovnitwf <- aov(compwf$`total nitrogen` ~ compwf$treatment, data = compwf)
+summary(aovnitwf)
+aovnitwf
+posthocnitwf <- TukeyHSD(x=aovnitwf, 'compwf$treatment', conf.level=0.99)
+posthocnitwf
+
+#3. Percent protein per treatment diet linear model; models percent protein of fish and compares to see if there are differences
+lmproteinwf <- lm(compwf$`crude protein` ~ compwf$`treatment`, data = compwf)
+summary(lmproteinwf)
+aovproteinwf <- aov(compwf$`crude protein` ~ compwf$treatment, data = compwf)
+summary(aovproteinwf)
+aovproteinwf
+posthocproteinwf <- TukeyHSD(x=aovproteinwf, 'compwf$treatment', conf.level=0.99)
+posthocproteinwf
+
+#4. Percent fat per treatment diet linear model; models percent fat of fish and compares to see if there are differences
+lmfatwf <- lm(compwf$`crude fat` ~ compwf$`treatment`, data = compwf)
+summary(lmfatwf)
+aovfatwf <- aov(compwf$`crude fat` ~ compwf$treatment, data = compwf)
+summary(aovfatwf)
+aovfatwf
+posthocfatwf <- TukeyHSD(x=aovfatwf, 'compwf$treatment', conf.level=0.99)
+posthocfatwf
+
+#5. Phosphorus per treatment diet linear model; models phosphorus ppm of fish and compares to see if there are differences
+lmPwf <- lm(compwf$`P` ~ compwf$`treatment`, data = compwf)
+summary(lmPwf)
+aovPwf <- aov(compwf$`P` ~ compwf$treatment, data = compwf)
+summary(aovPwf)
+aovPwf
+posthocPwf <- TukeyHSD(x=aovPwf, 'compwf$treatment', conf.level=0.99)
+posthocPwf
+
+#6. Potassium per treatment diet linear model; models potassium ppm of fish and compares to see if there are differences
+lmKwf <- lm(compwf$`K` ~ compwf$`treatment`, data = compwf)
+summary(lmKwf)
+aovKwf <- aov(compwf$`K` ~ compwf$treatment, data = compwf)
+summary(aovKwf)
+aovKwf
+posthocKwf <- TukeyHSD(x=aovKwf, 'compwf$treatment', conf.level=0.99)
+posthocKwf
+
+#7. Calcium per treatment diet linear model; models calcium ppm of fish and compares to see if there are differences
+lmCawf <- lm(compwf$`Ca` ~ compwf$`treatment`, data = compwf)
+summary(lmCawf)
+aovCawf <- aov(compwf$`Ca` ~ compwf$treatment, data = compwf)
+summary(aovCawf)
+aovCawf
+posthocCawf <- TukeyHSD(x=aovCawf, 'compwf$treatment', conf.level=0.99)
+posthocCawf
+
+#8. Magnesium per treatment diet linear model; models Magnesium ppm of fish and compares to see if there are differences
+lmMgwf <- lm(compwf$`Mg` ~ compwf$`treatment`, data = compwf)
+summary(lmMgwf)
+aovMgwf <- aov(compwf$`Mg` ~ compwf$treatment, data = compwf)
+summary(aovMgwf)
+aovMgwf
+posthocMgwf <- TukeyHSD(x=aovMgwf, 'compwf$treatment', conf.level=0.99)
+posthocMgwf
+
+#9. Zinc per treatment diet linear model; models zinc ppm of fish and compares to see if there are differences
+lmZnwf <- lm(compwf$`Zn` ~ compwf$`treatment`, data = compwf)
+summary(lmZnwf)
+aovZnwf <- aov(compwf$`Zn` ~ compwf$treatment, data = compwf)
+summary(aovZnwf)
+aovZnwf
+posthocZnwf <- TukeyHSD(x=aovZnwf, 'compwf$treatment', conf.level=0.99)
+posthocZnwf
+
+#10. Copper per treatment diet linear model; models copper ppm of fish and compares to see if there are differences
+lmCuwf <- lm(compwf$`Cu` ~ compwf$`treatment`, data = compwf)
+summary(lmCuwf)
+aovCuwf <- aov(compwf$`Cu` ~ compwf$treatment, data = compwf)
+summary(aovCuwf)
+aovCuwf
+posthocCuwf <- TukeyHSD(x=aovCuwf, 'compwf$treatment', conf.level=0.99)
+posthocCuwf
+
+#11. Manganese per treatment diet linear model; models manganese ppm of fish and compares to see if there are differences
+lmMnwf <- lm(compwf$`Mn` ~ compwf$`treatment`, data = compwf)
+summary(lmMnwf)
+aovMnwf <- aov(compwf$`Mn` ~ compwf$treatment, data = compwf)
+summary(aovMnwf)
+aovMnwf
+posthocMnwf <- TukeyHSD(x=aovMnwf, 'compwf$treatment', conf.level=0.99)
+posthocMnwf
+
+#12. Iron per treatment diet linear model; models Iron ppm of fish and compares to see if there are differences
+lmFewf <- lm(compwf$`Fe` ~ compwf$`treatment`, data = compwf)
+summary(lmFewf)
+aovFewf <- aov(compwf$`Fe` ~ compwf$treatment, data = compwf)
+summary(aovFewf)
+aovFewf
+posthocFewf <- TukeyHSD(x=aovFewf, 'compwf$treatment', conf.level=0.99)
+posthocFewf
+
+#13. Sulfur per treatment diet linear model; models sulfur ppm of fish and compares to see if there are differences
+lmSwf <- lm(compwf$`S` ~ compwf$`treatment`, data = compwf)
+summary(lmSwf)
+aovSwf <- aov(compwf$`S` ~ compwf$treatment, data = compwf)
+summary(aovSwf)
+aovSwf
+posthocSwf <- TukeyHSD(x=aovSwf, 'compwf$treatment', conf.level=0.99)
+posthocSwf
+
+#14. Sodium per treatment diet linear model; models sodium ppm of fish and compares to see if there are differences
+lmNawf <- lm(compwf$`Na` ~ compwf$`treatment`, data = compwf)
+summary(lmNawf)
+aovNawf <- aov(compwf$`Na` ~ compwf$treatment, data = compwf)
+summary(aovNawf)
+aovNawf
+posthocNawf <- TukeyHSD(x=aovNawf, 'compwf$treatment', conf.level=0.99)
+posthocNawf
+
+
+
+
+
+
+
+
+#MUSCLE FILLET
+
+#1. Percent Ash per treatment diet linear model; models percent ash of muscle and compares to see if there are differences
+lmashf <- lm(compf$`ash` ~ compf$`treatment`, data = compf)
+summary(lmashf)
+aovashf <- aov(compf$`ash` ~ compf$treatment, data = compf)
+summary(aovashf)
+aovashf
+posthocashf <- TukeyHSD(x=aovashf, 'compf$treatment', conf.level=0.99)
+posthocashf
+
+#2. Percent Total Nitrogen per treatment diet linear model; models percent total nitrogen of muscle and compares to see if there are differences
+lmnitf <- lm(compf$`total nitrogen` ~ compf$`treatment`, data = compf)
+summary(lmnitf)
+aovnitf <- aov(compf$`total nitrogen` ~ compf$treatment, data = compf)
+summary(aovnitf)
+aovnitf
+posthocnitf <- TukeyHSD(x=aovnitf, 'compf$treatment', conf.level=0.99)
+posthocnitf
+
+#3. Percent protein per treatment diet linear model; models percent protein of muscle and compares to see if there are differences
+lmproteinf <- lm(compf$`crude protein` ~ compf$`treatment`, data = compf)
+summary(lmproteinf)
+aovproteinf <- aov(compf$`crude protein` ~ compf$treatment, data = compf)
+summary(aovproteinf)
+aovproteinf
+posthocproteinf <- TukeyHSD(x=aovproteinf, 'compf$treatment', conf.level=0.99)
+posthocproteinf
+
+#4. Percent fat per treatment diet linear model; models percent fat of muscle and compares to see if there are differences
+lmfatf <- lm(compf$`crude fat` ~ compf$`treatment`, data = compf)
+summary(lmfatf)
+aovfatf <- aov(compf$`crude fat` ~ compf$treatment, data = compf)
+summary(aovfatf)
+aovfatf
+posthocfatf <- TukeyHSD(x=aovfatf, 'compf$treatment', conf.level=0.99)
+posthocfatf
+
+#5. Phosphorus per treatment diet linear model; models phosphorus ppm of muscle and compares to see if there are differences
+lmPf <- lm(compf$`P` ~ compf$`treatment`, data = compf)
+summary(lmPf)
+aovPf <- aov(compf$`P` ~ compf$treatment, data = compf)
+summary(aovPf)
+aovPf
+posthocPf <- TukeyHSD(x=aovPf, 'compf$treatment', conf.level=0.99)
+posthocPf
+
+#6. Potassium per treatment diet linear model; models potassium ppm of muscle and compares to see if there are differences
+lmKf <- lm(compf$`K` ~ compf$`treatment`, data = compf)
+summary(lmKf)
+aovKf <- aov(compf$`K` ~ compf$treatment, data = compf)
+summary(aovKf)
+aovKf
+posthocKf <- TukeyHSD(x=aovKf, 'compf$treatment', conf.level=0.99)
+posthocKf
+
+#7. Calcium per treatment diet linear model; models calcium ppm of fish and compares to see if there are differences
+lmCaf <- lm(compf$`Ca` ~ compf$`treatment`, data = compf)
+summary(lmCaf)
+aovCaf <- aov(compf$`Ca` ~ compf$treatment, data = compf)
+summary(aovCaf)
+aovCaf
+posthocCaf <- TukeyHSD(x=aovCaf, 'compf$treatment', conf.level=0.99)
+posthocCaf
+
+#8. Magnesium per treatment diet linear model; models Magnesium ppm of muscle and compares to see if there are differences
+lmMgf <- lm(compf$`Mg` ~ compf$`treatment`, data = compf)
+summary(lmMgf)
+aovMgf <- aov(compf$`Mg` ~ compf$treatment, data = compf)
+summary(aovMgf)
+aovMgf
+posthocMgf <- TukeyHSD(x=aovMgf, 'compf$treatment', conf.level=0.99)
+posthocMgf
+
+#9. Zinc per treatment diet linear model; models zinc ppm of muscle and compares to see if there are differences
+lmZnf <- lm(compf$`Zn` ~ compf$`treatment`, data = compf)
+summary(lmZnf)
+aovZnf <- aov(compf$`Zn` ~ compf$treatment, data = compf)
+summary(aovZnf)
+aovZnf
+posthocZnf <- TukeyHSD(x=aovZnf, 'compf$treatment', conf.level=0.99)
+posthocZnf
+
+#10. Copper per treatment diet linear model; models copper ppm of muscle and compares to see if there are differences
+lmCuf <- lm(compf$`Cu` ~ compf$`treatment`, data = compf)
+summary(lmCuf)
+aovCuf <- aov(compf$`Cu` ~ compf$treatment, data = compf)
+summary(aovCuf)
+aovCuf
+posthocCuf <- TukeyHSD(x=aovCuf, 'compf$treatment', conf.level=0.99)
+posthocCuf
+
+#11. Manganese per treatment diet linear model; models manganese ppm of muscle and compares to see if there are differences
+lmMnf <- lm(compf$`Mn` ~ compf$`treatment`, data = compf)
+summary(lmMnf)
+aovMnf <- aov(compf$`Mn` ~ compf$treatment, data = compf)
+summary(aovMnf)
+aovMnf
+posthocMnf <- TukeyHSD(x=aovMnf, 'compf$treatment', conf.level=0.99)
+posthocMnf
+
+#12. Iron per treatment diet linear model; models Iron ppm of muscle and compares to see if there are differences
+lmFef <- lm(compf$`Fe` ~ compf$`treatment`, data = compf)
+summary(lmFef)
+aovFef <- aov(compf$`Fe` ~ compf$treatment, data = compf)
+summary(aovFef)
+aovFef
+posthocFef <- TukeyHSD(x=aovFef, 'compf$treatment', conf.level=0.99)
+posthocFef
+
+#13. Sulfur per treatment diet linear model; models sulfur ppm of muscle and compares to see if there are differences
+lmSf <- lm(compf$`S` ~ compf$`treatment`, data = compf)
+summary(lmSf)
+aovSf <- aov(compf$`S` ~ compf$treatment, data = compf)
+summary(aovSf)
+aovSf
+posthocSf <- TukeyHSD(x=aovSf, 'compf$treatment', conf.level=0.99)
+posthocSf
+
+#14. Sodium per treatment diet linear model; models sodium ppm of muscle and compares to see if there are differences
+lmNaf <- lm(compf$`Na` ~ compf$`treatment`, data = compf)
+summary(lmNaf)
+aovNaf <- aov(compf$`Na` ~ compf$treatment, data = compf)
+summary(aovNaf)
+aovNaf
+posthocNaf <- TukeyHSD(x=aovNaf, 'compf$treatment', conf.level=0.99)
+posthocNaf
 
 
 
